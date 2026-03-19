@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Just Solutions — Professional Estimating Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg0: #0a0a0c;
+  --bg1: #111116;
+  --bg2: #18181f;
+  --bg3: #1f1f28;
+  --bg4: #27272f;
+  --border: rgba(255,255,255,0.07);
+  --border-hi: rgba(255,255,255,0.14);
+  --gold: #d4a843;
+  --gold-dim: #a07c28;
+  --gold-glow: rgba(212,168,67,0.15);
+  --orange: #e8743a;
+  --teal: #2dd4b0;
+  --blue: #4fa3e8;
+  --red: #e85454;
+  --text: #f0f0f2;
+  --text2: #9898a8;
+  --text3: #5a5a6a;
+  --radius: 10px;
+  --radius-lg: 16px;
+  font-family: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg0); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg1); }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+
+/* ---- HERO NAV ---- */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 20%, rgba(212,168,67,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(232,116,58,0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a0c 0%, #0d0d14 100%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+nav {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+.logo-mark {
+  display: flex; align-items: center; gap: 12px;
+}
+.logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; color: #000;
+  letter-spacing: 1px;
+}
+.logo-text { line-height: 1.1; }
+.logo-text .name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--text); }
+.logo-text .tagline { font-size: 10px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+nav ul { display: flex; gap: 2rem; list-style: none; }
+nav ul a { color: var(--text2); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+nav ul a:hover { color: var(--gold); }
+.nav-cta {
+  display: flex; gap: 10px;
+}
+.btn {
+  padding: 10px 22px; border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: all .2s; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-ghost { background: transparent; border: 1px solid var(--border-hi); color: var(--text2); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn-gold { background: linear-gradient(135deg, var(--gold), var(--orange)); color: #000; font-weight: 600; }
+.btn-gold:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(212,168,67,0.3); }
+.btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+.btn-outline:hover { background: var(--gold-glow); }
+.btn-danger { background: rgba(232,84,84,0.15); border: 1px solid rgba(232,84,84,0.3); color: var(--red); }
+.btn-danger:hover { background: rgba(232,84,84,0.25); }
+.btn-sm { padding: 7px 14px; font-size: 13px; }
+
+/* ---- HERO CONTENT ---- */
+.hero-content {
+  position: relative; z-index: 2;
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 4rem 2rem;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.3);
+  color: var(--gold); font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 999px; margin-bottom: 2rem;
+}
+.hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+h1.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  letter-spacing: 6px;
+  line-height: 0.95;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+h1.hero-title span { color: var(--gold); }
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text2); max-width: 620px;
+  line-height: 1.7; margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+.hero-services {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+}
+.svc-chip {
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 10px 20px; border-radius: 999px;
+  font-size: 13px; font-weight: 500; color: var(--text2);
+  cursor: pointer; transition: all .2s;
+  display: flex; align-items: center; gap: 8px;
+}
+.svc-chip:hover, .svc-chip.active {
+  background: var(--gold-glow); border-color: var(--gold); color: var(--gold);
+}
+.svc-chip .icon { font-size: 16px; }
+
+/* ---- MAIN APP ---- */
+#app {
+  max-width: 1400px; margin: 0 auto; padding: 2rem 2rem 6rem;
+}
+
+/* ---- TABS ---- */
+.main-tabs {
+  display: flex; gap: 4px;
+  background: var(--bg1); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 5px;
+  margin-bottom: 2rem; overflow-x: auto;
+}
+.main-tab {
+  flex: 1; min-width: 120px;
+  padding: 11px 16px; border-radius: var(--radius);
+  background: transparent; border: none;
+  color: var(--text3); font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: all .2s; white-space: nowrap;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.main-tab:hover { color: var(--text2); background: var(--bg2); }
+.main-tab.active { background: var(--bg3); color: var(--gold); box-shadow: 0 1px 8px rgba(0,0,0,0.4); }
+.tab-icon { font-size: 15px; }
+
+/* ---- SECTIONS ---- */
+.section { display: none; animation: fadeIn .3s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+
+/* ---- CARDS ---- */
+.card {
+  background: var(--bg1); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.card-gold { border-color: rgba(212,168,67,0.25); }
+.card h3 {
+  font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.card h3 .bar { width: 3px; height: 14px; background: var(--gold); border-radius: 2px; }
+
+/* ---- FORM ELEMENTS ---- */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 12px; color: var(--text3); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+input, select, textarea {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
+  transition: border-color .2s; outline: none; width: 100%;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+input[readonly] { color: var(--text2); cursor: default; }
+select option { background: var(--bg2); }
+textarea { resize: vertical; min-height: 80px; }
+
+/* ---- METRICS ---- */
+.metric-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 10px; margin: 1.5rem 0; }
+.metric {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
+}
+.metric .ml { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.metric .mv { font-size: 22px; font-weight: 600; color: var(--text); font-family: 'DM Mono', monospace; }
+.metric .ms { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.metric.gold-metric { border-color: rgba(212,168,67,0.3); }
+.metric.gold-metric .mv { color: var(--gold); }
+
+/* ---- DYNAMIC ROWS ---- */
+.dyn-row {
+  display: flex; gap: 10px; align-items: flex-end;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px; margin-bottom: 8px;
+}
+.dyn-row .field { flex: 1; }
+.dyn-row .field-sm { flex: 0 0 120px; }
+.remove-btn {
+  background: transparent; border: 1px solid rgba(232,84,84,0.25);
+  border-radius: var(--radius); padding: 10px 12px;
+  color: var(--red); cursor: pointer; font-size: 13px;
+  transition: all .2s; white-space: nowrap; font-family: 'DM Sans', sans-serif;
+  align-self: flex-end;
+}
+.remove-btn:hover { background: rgba(232,84,84,0.1); }
+.add-row-btn {
+  background: var(--bg2); border: 1px dashed var(--border-hi);
+  border-radius: var(--radius); padding: 10px 18px;
+  color: var(--text3); cursor: pointer; font-size: 13px; font-family: 'DM Sans', sans-serif;
+  transition: all .2s; width: 100%; text-align: center; margin-top: 4px;
+}
+.add-row-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+
+/* ---- BID SUMMARY LINES ---- */
+.bid-line {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px;
+}
+.bid-line:last-child { border: none; }
+.bid-line .bl { color: var(--text2); }
+.bid-line .bv { font-weight: 500; color: var(--text); font-family: 'DM Mono', monospace; }
+.bid-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0 4px; border-top: 1px solid var(--gold-dim);
+  margin-top: 8px;
+}
+.bid-total .bt { font-size: 20px; font-weight: 600; color: var(--text); }
+.bid-total .bv { font-size: 24px; font-weight: 700; color: var(--gold); font-family: 'DM Mono', monospace; }
+
+/* ---- STEP TABS (estimator sub-tabs) ---- */
+.step-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; overflow-x: auto; }
+.step-tab {
+  flex: 1; min-width: 90px; padding: 10px 16px; text-align: center;
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text3); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all .2s; border-right: none; font-family: 'DM Sans', sans-serif;
+}
+.step-tab:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.step-tab:last-child { border-radius: 0 var(--radius) var(--radius) 0; border-right: 1px solid var(--border); }
+.step-tab.active { background: var(--bg3); color: var(--gold); border-color: rgba(212,168,67,0.3); }
+.step-tab:hover:not(.active) { color: var(--text2); background: var(--bg3); }
+
+/* ---- IMAGE / AUDIO UPLOAD ---- */
+.upload-zone {
+  border: 2px dashed var(--border-hi); border-radius: var(--radius-lg);
+  padding: 2rem; text-align: center; cursor: pointer;
+  transition: all .3s; position: relative; overflow: hidden;
+  background: var(--bg2);
+}
+.upload-zone:hover, .upload-zone.drag-over {
+  border-color: var(--gold); background: var(--gold-glow);
+}
+.upload-zone input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  background: transparent; border: none; padding: 0;
+}
+.upload-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.upload-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.upload-sub { font-size: 13px; color: var(--text3); }
+.upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1rem; }
+.preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 8px; margin-top: 12px; }
+.preview-thumb {
+  position: relative; aspect-ratio: 1; border-radius: var(--radius);
+  overflow: hidden; background: var(--bg3); border: 1px solid var(--border);
+}
+.preview-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.preview-thumb .del {
+  position: absolute; top: 4px; right: 4px;
+  background: rgba(0,0,0,0.7); border: none; border-radius: 50%;
+  width: 22px; height: 22px; color: #fff; cursor: pointer; font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.audio-bar {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  display: flex; align-items: center; gap: 12px; margin-top: 8px;
+}
+.audio-bar .af { font-size: 13px; color: var(--text2); flex: 1; truncate; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ai-result {
+  background: linear-gradient(135deg, rgba(212,168,67,0.05), rgba(232,116,58,0.05));
+  border: 1px solid rgba(212,168,67,0.2); border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem; margin-top: 1rem;
+}
+.ai-result .ai-label { font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.ai-result .ai-text { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+/* ---- MARKETING ---- */
+.marketing-hero {
+  background: linear-gradient(135deg, var(--bg2), var(--bg1));
+  border: 1px solid var(--border-hi); border-radius: var(--radius-lg);
+  padding: 3rem; text-align: center; margin-bottom: 1.5rem;
+  position: relative; overflow: hidden;
+}
+.marketing-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(212,168,67,0.08), transparent);
+}
+.marketing-hero h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem;
+  letter-spacing: 4px; color: var(--text); margin-bottom: 1rem; position: relative;
+}
+.marketing-hero h2 span { color: var(--gold); }
+.marketing-hero p { color: var(--text2); font-size: 1rem; line-height: 1.7; max-width: 600px; margin: 0 auto 1.5rem; position: relative; }
+.channel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 12px; }
+.channel-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  transition: all .2s; cursor: pointer;
+}
+.channel-card:hover { border-color: var(--gold); background: var(--gold-glow); transform: translateY(-2px); }
+.channel-card .ch-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.channel-card .ch-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.channel-card .ch-desc { font-size: 13px; color: var(--text3); line-height: 1.5; }
+
+/* ---- WHITE LABEL / LICENSE ---- */
+.license-header {
+  background: linear-gradient(135deg, rgba(45,212,176,0.08), rgba(79,163,232,0.08));
+  border: 1px solid rgba(45,212,176,0.2); border-radius: var(--radius-lg);
+  padding: 2rem; margin-bottom: 1.5rem; text-align: center;
+}
+.license-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 3px; color: var(--teal); margin-bottom: 0.5rem; }
+.license-header p { color: var(--text2); font-size: 14px; }
+.plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 16px; }
+.plan-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem;
+  display: flex; flex-direction: column;
+}
+.plan-card.featured { border-color: var(--gold); background: linear-gradient(135deg, rgba(212,168,67,0.05), var(--bg2)); }
+.plan-card .plan-badge { font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.plan-card .plan-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; color: var(--text); margin-bottom: 4px; }
+.plan-card .plan-price { font-size: 2.5rem; font-weight: 700; color: var(--gold); font-family: 'DM Mono', monospace; }
+.plan-card .plan-price span { font-size: 1rem; color: var(--text3); }
+.plan-card .plan-desc { font-size: 13px; color: var(--text3); margin: 12px 0 20px; line-height: 1.6; }
+.plan-card ul { list-style: none; flex: 1; }
+.plan-card ul li { font-size: 13px; color: var(--text2); padding: 7px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.plan-card ul li:last-child { border: none; }
+.plan-card ul li::before { content: '✓'; color: var(--teal); font-weight: 700; }
+.plan-card .plan-btn { margin-top: 1.5rem; }
+.license-terms {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1.5rem;
+}
+.license-terms h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--text); margin-bottom: 1rem; }
+.license-terms p, .license-terms li { font-size: 13px; color: var(--text3); line-height: 1.7; margin-bottom: 8px; }
+.license-terms ol { padding-left: 1.25rem; }
+.license-terms strong { color: var(--text2); }
+
+/* ---- QUOTE MODAL ---- */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+  z-index: 1000; display: none;
+  align-items: center; justify-content: center; padding: 2rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg1); border: 1px solid var(--border-hi);
+  border-radius: var(--radius-lg); padding: 2.5rem;
+  max-width: 680px; width: 100%; max-height: 90vh;
+  overflow-y: auto; position: relative;
+}
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: var(--bg3); border: none; border-radius: 50%;
+  width: 32px; height: 32px; color: var(--text2); cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { color: var(--text); background: var(--bg4); }
+.quote-header { text-align: center; margin-bottom: 2rem; }
+.quote-company { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 4px; color: var(--gold); }
+.quote-sub { font-size: 12px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; }
+.quote-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 13px; }
+.quote-table th { text-align: left; padding: 8px 12px; background: var(--bg3); color: var(--text3); font-weight: 600; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+.quote-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text2); }
+.quote-table tr:last-child td { border: none; }
+.quote-total-row { background: var(--gold-glow); }
+.quote-total-row td { color: var(--gold); font-weight: 700; font-size: 15px; border: none !important; }
+.quote-sig { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 12px; color: var(--text3); line-height: 1.7; }
+
+/* ---- AUDIO RECORDING ---- */
+.rec-btn {
+  background: rgba(232,84,84,0.1); border: 1px solid rgba(232,84,84,0.3);
+  border-radius: var(--radius); padding: 12px 24px;
+  color: var(--red); cursor: pointer; font-size: 14px; font-family: 'DM Sans', sans-serif;
+  font-weight: 500; transition: all .2s; display: flex; align-items: center; gap: 8px;
+}
+.rec-btn:hover { background: rgba(232,84,84,0.2); }
+.rec-btn.recording { animation: recPulse 1.5s infinite; }
+@keyframes recPulse { 0%,100%{background:rgba(232,84,84,0.1)} 50%{background:rgba(232,84,84,0.25)} }
+.recording-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); }
+
+/* ---- STATUS BADGE ---- */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
+}
+.status-green { background: rgba(45,212,176,0.1); color: var(--teal); border: 1px solid rgba(45,212,176,0.2); }
+.status-gold { background: rgba(212,168,67,0.1); color: var(--gold); border: 1px solid rgba(212,168,67,0.2); }
+.status-blue { background: rgba(79,163,232,0.1); color: var(--blue); border: 1px solid rgba(79,163,232,0.2); }
+
+/* ---- FOOTER ---- */
+footer {
+  background: var(--bg1); border-top: 1px solid var(--border);
+  padding: 3rem; text-align: center;
+}
+footer .ft-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 4px; color: var(--gold); margin-bottom: 0.5rem; }
+footer p { font-size: 13px; color: var(--text3); margin-bottom: 4px; }
+footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+
+/* ---- MISC ---- */
+.divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+.row-actions { display: flex; gap: 10px; margin-top: 1rem; flex-wrap: wrap; }
+.section-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 3px; color: var(--text); margin-bottom: 0.25rem; }
+.section-sub { font-size: 14px; color: var(--text3); margin-bottom: 1.5rem; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { display: none; }
+  .grid2, .grid3, .grid4, .two-col { grid-template-columns: 1fr; }
+  .upload-grid { grid-template-columns: 1fr; }
+  .hero-content { padding: 3rem 1.5rem; }
+  #app { padding: 1rem 1rem 4rem; }
+  h1.hero-title { letter-spacing: 3px; }
+  .plan-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <nav>
+    <div class="logo-mark">
+      <div class="logo-icon">JS</div>
+      <div class="logo-text">
+        <div class="name">JUST SOLUTIONS</div>
+        <div class="tagline">Professional Services</div>
+      </div>
+    </div>
+    <ul>
+      <li><a href="#app">Estimator</a></li>
+      <li><a href="#marketing-tab" onclick="switchMain('marketing')">Marketing</a></li>
+      <li><a href="#license-tab" onclick="switchMain('license')">White Label</a></li>
+      <li><a href="#contact-tab" onclick="switchMain('contact')">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn btn-ghost btn-sm" onclick="openQuote()">Preview Quote</button>
+      <button class="btn btn-gold btn-sm" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Start Estimate ↓</button>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-badge"><div class="dot"></div> AI-Powered Estimating Platform</div>
+    <h1 class="hero-title">JUST<br/><span>SOLUTIONS</span></h1>
+    <p class="hero-sub">Professional estimating, AI-assisted job analysis, and marketing tools for concrete, masonry, flooring, and power washing services.</p>
+    <div class="hero-actions">
+      <button class="btn btn-gold" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Build Your Estimate →</button>
+      <button class="btn btn-ghost" onclick="switchMain('license')">White Label This App</button>
+    </div>
+    <div class="hero-services">
+      <div class="svc-chip active" onclick="switchMain('concrete');document.getElementById('app').scrollIntoView({behavior:'smooth'})"><span class="icon">🏗</span> Concrete</div>
+      <div class="svc-chip" onclick="switchMain('masonry');document.getElementById('app').scrollIntoView({behavior:'smooth'})"><span class="icon">🧱</span> Masonry</div>
+      <div class="svc-chip" onclick="switchMain('flooring');document.getElementById('app').scrollIntoView({behavior:'smooth'})"><span class="icon">🪵</span> Flooring</div>
+      <div class="svc-chip" onclick="switchMain('powerwash');document.getElementById('app').scrollIntoView({behavior:'smooth'})"><span class="icon">💧</span> Power Washing</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ MAIN APP ══════════════════ -->
+<div id="app">
+  <div class="main-tabs">
+    <button class="main-tab active" onclick="switchMain('concrete')" id="mtab-concrete"><span class="tab-icon">🏗</span> Concrete</button>
+    <button class="main-tab" onclick="switchMain('masonry')" id="mtab-masonry"><span class="tab-icon">🧱</span> Masonry</button>
+    <button class="main-tab" onclick="switchMain('flooring')" id="mtab-flooring"><span class="tab-icon">🪵</span> Flooring</button>
+    <button class="main-tab" onclick="switchMain('powerwash')" id="mtab-powerwash"><span class="tab-icon">💧</span> Power Wash</button>
+    <button class="main-tab" onclick="switchMain('marketing')" id="mtab-marketing"><span class="tab-icon">📣</span> Marketing</button>
+    <button class="main-tab" onclick="switchMain('license')" id="mtab-license"><span class="tab-icon">⚡</span> White Label</button>
+    <button class="main-tab" onclick="switchMain('contact')" id="mtab-contact"><span class="tab-icon">📋</span> Contact CRM</button>
+  </div>
+
+  <!-- ════════ CONCRETE ════════ -->
+  <div id="sec-concrete" class="section active">
+    <div class="section-title">Concrete Estimator</div>
+    <div class="section-sub">Flatwork, foundations, walls, driveways, sidewalks & decorative concrete</div>
+
+    <div class="step-tabs">
+      <button class="step-tab active" onclick="cStep('c-takeoff',this)">Takeoff</button>
+      <button class="step-tab" onclick="cStep('c-materials',this)">Materials</button>
+      <button class="step-tab" onclick="cStep('c-labor',this)">Labor</button>
+      <button class="step-tab" onclick="cStep('c-equipment',this)">Equipment</button>
+      <button class="step-tab" onclick="cStep('c-media',this)">Photos + AI</button>
+      <button class="step-tab" onclick="cStep('c-summary',this)">Bid Summary</button>
+    </div>
+
+    <!-- TAKEOFF -->
+    <div id="c-takeoff" class="csub active">
+      <div class="card">
+        <h3><div class="bar"></div> Project Info</h3>
+        <div class="grid3">
+          <div class="field"><label>Project Name</label><input id="c-projname" type="text" placeholder="e.g. Main St Slab"></div>
+          <div class="field"><label>Client Name</label><input id="c-client" type="text" placeholder="Client / GC name"></div>
+          <div class="field"><label>Job Type</label>
+            <select id="c-jobtype">
+              <option>Slab / Flatwork</option><option>Foundation / Footing</option>
+              <option>Driveway</option><option>Sidewalk / Curb</option>
+              <option>Retaining Wall</option><option>Decorative / Stamped</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Concrete PSI</label>
+            <select id="c-psi"><option>2,500 PSI</option><option selected>3,000 PSI</option><option>4,000 PSI</option><option>5,000 PSI</option></select>
+          </div>
+          <div class="field"><label>Finish Type</label>
+            <select id="c-finish"><option>Broom</option><option>Smooth / Trowel</option><option>Exposed Aggregate</option><option>Stamped</option><option>Polished</option></select>
+          </div>
+          <div class="field"><label>Waste Factor %</label><input id="c-waste" type="number" value="8" min="0" max="25" oninput="calcConcrete()"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Concrete Sections</h3>
+        <div id="c-sections"></div>
+        <button class="add-row-btn" onclick="addCSection()">+ Add Section</button>
+      </div>
+      <div class="metric-row" id="c-takeoff-metrics">
+        <div class="metric gold-metric"><div class="ml">Net Cubic Yards</div><div class="mv" id="c-mnet">0.00</div><div class="ms">before waste</div></div>
+        <div class="metric gold-metric"><div class="ml">Order Quantity</div><div class="mv" id="c-mgross">0.00</div><div class="ms">CY with waste</div></div>
+        <div class="metric"><div class="ml">Total Area</div><div class="mv" id="c-marea">0</div><div class="ms">sq ft</div></div>
+        <div class="metric"><div class="ml">Avg Thickness</div><div class="mv" id="c-mthick">0.0</div><div class="ms">inches</div></div>
+      </div>
+    </div>
+
+    <!-- MATERIALS -->
+    <div id="c-materials" class="csub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Concrete Cost</h3>
+        <div class="grid3">
+          <div class="field"><label>Price per CY ($)</label><input id="c-priceCY" type="number" value="165" oninput="calcConcrete()"></div>
+          <div class="field"><label>Total CY (auto)</label><input id="c-totalCY" readonly></div>
+          <div class="field"><label>Concrete Subtotal</label><input id="c-concSubtotal" readonly></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Reinforcement</h3>
+        <div class="grid4">
+          <div class="field"><label>Type</label>
+            <select id="c-rebarType" onchange="calcConcrete()">
+              <option>None</option><option>Wire Mesh (per SF)</option>
+              <option>#4 Rebar (per LF)</option><option>#5 Rebar (per LF)</option><option>Fiber (per CY)</option>
+            </select>
+          </div>
+          <div class="field"><label>Quantity</label><input id="c-rebarQty" type="number" value="0" oninput="calcConcrete()"></div>
+          <div class="field"><label>Unit Price ($)</label><input id="c-rebarPrice" type="number" value="0.45" step="0.01" oninput="calcConcrete()"></div>
+          <div class="field"><label>Rebar Cost</label><input id="c-rebarCost" readonly></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Forming & Misc Materials</h3>
+        <div id="c-misc"></div>
+        <button class="add-row-btn" onclick="addCMisc()">+ Add Material Item</button>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Concrete</div><div class="mv" id="c-mm1">$0</div></div>
+        <div class="metric"><div class="ml">Reinforcement</div><div class="mv" id="c-mm2">$0</div></div>
+        <div class="metric"><div class="ml">Misc Materials</div><div class="mv" id="c-mm3">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Materials</div><div class="mv" id="c-mmtotal">$0</div></div>
+      </div>
+    </div>
+
+    <!-- LABOR -->
+    <div id="c-labor" class="csub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Crew & Wages</h3>
+        <div class="grid3">
+          <div class="field"><label>Foreman Wage ($/hr)</label><input id="c-fwage" type="number" value="38" oninput="calcConcrete()"></div>
+          <div class="field"><label>Laborer Wage ($/hr)</label><input id="c-lwage" type="number" value="26" oninput="calcConcrete()"></div>
+          <div class="field"><label>Burden Rate %</label><input id="c-burden" type="number" value="30" oninput="calcConcrete()"></div>
+        </div>
+        <div class="grid4">
+          <div class="field"><label>Foremen Count</label><input id="c-fcount" type="number" value="1" oninput="calcConcrete()"></div>
+          <div class="field"><label>Laborer Count</label><input id="c-lcount" type="number" value="3" oninput="calcConcrete()"></div>
+          <div class="field"><label>Work Days</label><input id="c-days" type="number" value="1" step="0.5" oninput="calcConcrete()"></div>
+          <div class="field"><label>Hours/Day</label><input id="c-hrs" type="number" value="8" oninput="calcConcrete()"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Subcontractors / Specialty Labor</h3>
+        <div id="c-subs"></div>
+        <button class="add-row-btn" onclick="addCSub()">+ Add Sub / Specialty</button>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Crew Hours</div><div class="mv" id="c-lm1">0</div></div>
+        <div class="metric"><div class="ml">Base Labor</div><div class="mv" id="c-lm2">$0</div></div>
+        <div class="metric"><div class="ml">Burden</div><div class="mv" id="c-lm3">$0</div></div>
+        <div class="metric"><div class="ml">Subs</div><div class="mv" id="c-lm4">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Labor</div><div class="mv" id="c-lmtotal">$0</div></div>
+      </div>
+    </div>
+
+    <!-- EQUIPMENT -->
+    <div id="c-equipment" class="csub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Equipment & Rentals</h3>
+        <div id="c-equip"></div>
+        <button class="add-row-btn" onclick="addCEquip()">+ Add Equipment</button>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Other Direct Costs</h3>
+        <div class="grid3">
+          <div class="field"><label>Permits & Fees ($)</label><input id="c-permits" type="number" value="0" oninput="calcConcrete()"></div>
+          <div class="field"><label>Concrete Testing ($)</label><input id="c-testing" type="number" value="0" oninput="calcConcrete()"></div>
+          <div class="field"><label>Mobilization ($)</label><input id="c-mob" type="number" value="0" oninput="calcConcrete()"></div>
+        </div>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Equipment</div><div class="mv" id="c-em1">$0</div></div>
+        <div class="metric"><div class="ml">Other Costs</div><div class="mv" id="c-em2">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Equip + Other</div><div class="mv" id="c-emtotal">$0</div></div>
+      </div>
+    </div>
+
+    <!-- MEDIA + AI -->
+    <div id="c-media" class="csub" style="display:none">
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Job Site Photos</h3>
+            <div class="upload-zone" id="c-imgzone" ondragover="dragOver(event,'c-imgzone')" ondragleave="dragLeave('c-imgzone')" ondrop="dropFiles(event,'c-imgprev','c-imgzone')">
+              <input type="file" accept="image/*" multiple onchange="previewImages(this,'c-imgprev')">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Upload Job Site Photos</div>
+              <div class="upload-sub">Drag & drop or click — JPG, PNG, HEIC supported</div>
+            </div>
+            <div class="preview-grid" id="c-imgprev"></div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Voice / Audio Notes</h3>
+            <div class="upload-zone" style="margin-bottom:10px">
+              <input type="file" accept="audio/*,video/*" onchange="handleAudio(this,'c-audiobar','c-audioname')">
+              <div class="upload-icon">🎙</div>
+              <div class="upload-title">Upload Audio Walkthrough</div>
+              <div class="upload-sub">MP3, M4A, WAV, OGG — AI will interpret & auto-fill estimate</div>
+            </div>
+            <div class="audio-bar" id="c-audiobar" style="display:none">
+              <span>🎵</span><span class="af" id="c-audioname">No file</span>
+              <button class="btn btn-sm btn-outline" onclick="analyzeAudio('c-audioname','c-airesult','concrete')">Analyze with AI →</button>
+            </div>
+            <div style="margin-top:12px">
+              <button class="rec-btn" id="c-recbtn" onclick="toggleRecord('c-recbtn','c-audiobar','c-audioname','c-airesult','concrete')">
+                <div class="recording-dot"></div> Record Voice Note
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> AI Analysis</h3>
+            <p style="font-size:13px;color:var(--text3);margin-bottom:12px">Upload photos or audio and click Analyze — AI will review site conditions and suggest estimate adjustments.</p>
+            <button class="btn btn-gold" onclick="analyzeImages('c-imgprev','c-airesult','concrete')">🤖 Analyze Photos with AI</button>
+            <div id="c-airesult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div id="c-summary" class="csub" style="display:none">
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Overhead & Profit</h3>
+            <div class="grid2">
+              <div class="field"><label>Overhead %</label><input id="c-oh" type="number" value="15" oninput="calcConcrete()"></div>
+              <div class="field"><label>Profit Margin %</label><input id="c-profit" type="number" value="10" oninput="calcConcrete()"></div>
+            </div>
+          </div>
+          <div class="card card-gold">
+            <h3><div class="bar"></div> Bid Breakdown</h3>
+            <div class="bid-line"><span class="bl">Materials</span><span class="bv" id="cs-mat">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Labor</span><span class="bv" id="cs-lab">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Equipment & Other</span><span class="bv" id="cs-eqp">$0.00</span></div>
+            <div class="divider"></div>
+            <div class="bid-line"><span class="bl">Subtotal (direct)</span><span class="bv" id="cs-sub">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Overhead</span><span class="bv" id="cs-oh">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Profit</span><span class="bv" id="cs-pft">$0.00</span></div>
+            <div class="bid-total"><span class="bt">Total Bid</span><span class="bv" id="cs-total">$0.00</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="metric-row">
+            <div class="metric gold-metric"><div class="ml">Cost / CY</div><div class="mv" id="cs-cy">$0</div></div>
+            <div class="metric gold-metric"><div class="ml">Cost / SF</div><div class="mv" id="cs-sf">$0</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric"><div class="ml">Gross Margin</div><div class="mv" id="cs-margin">0%</div></div>
+            <div class="metric"><div class="ml">Total CY</div><div class="mv" id="cs-yards">0 CY</div></div>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> Notes & Terms</h3>
+            <textarea id="c-notes" placeholder="Add bid notes, exclusions, payment terms, warranty info..."></textarea>
+          </div>
+          <div class="row-actions">
+            <button class="btn btn-gold" onclick="openQuote('concrete')">Preview & Print Quote</button>
+            <button class="btn btn-outline" onclick="exportCSV('concrete')">Export CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ MASONRY ════════ -->
+  <div id="sec-masonry" class="section">
+    <div class="section-title">Masonry Estimator</div>
+    <div class="section-sub">Block walls, brick work, stone, stucco, tuck-pointing & restoration</div>
+
+    <div class="step-tabs">
+      <button class="step-tab active" onclick="msnStep('msn-takeoff',this)">Takeoff</button>
+      <button class="step-tab" onclick="msnStep('msn-materials',this)">Materials</button>
+      <button class="step-tab" onclick="msnStep('msn-labor',this)">Labor</button>
+      <button class="step-tab" onclick="msnStep('msn-media',this)">Photos + AI</button>
+      <button class="step-tab" onclick="msnStep('msn-summary',this)">Bid Summary</button>
+    </div>
+
+    <div id="msn-takeoff" class="msnsub active">
+      <div class="card">
+        <h3><div class="bar"></div> Project Info</h3>
+        <div class="grid3">
+          <div class="field"><label>Project Name</label><input id="msn-proj" type="text" placeholder="e.g. Brick Retaining Wall"></div>
+          <div class="field"><label>Client</label><input id="msn-client" type="text"></div>
+          <div class="field"><label>Work Type</label>
+            <select id="msn-type">
+              <option>CMU Block Wall</option><option>Brick Veneer</option><option>Natural Stone</option>
+              <option>Stucco / EIFS</option><option>Tuck-Pointing</option><option>Chimney Work</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Wall / Surface Sections</h3>
+        <div id="msn-sections"></div>
+        <button class="add-row-btn" onclick="addMsnSection()">+ Add Section</button>
+      </div>
+      <div class="metric-row">
+        <div class="metric gold-metric"><div class="ml">Total SF</div><div class="mv" id="msn-msf">0</div></div>
+        <div class="metric gold-metric"><div class="ml">Block / Brick Units</div><div class="mv" id="msn-munits">0</div></div>
+        <div class="metric"><div class="ml">Mortar Bags (est.)</div><div class="mv" id="msn-mmortar">0</div></div>
+        <div class="metric"><div class="ml">Waste Factor</div><div class="mv" id="msn-mwaste">10%</div></div>
+      </div>
+    </div>
+
+    <div id="msn-materials" class="msnsub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Unit Masonry Materials</h3>
+        <div class="grid3">
+          <div class="field"><label>Unit Type</label>
+            <select id="msn-unit"><option>8" CMU Block</option><option>Standard Brick</option><option>Modular Brick</option><option>Natural Stone</option><option>Pavers</option></select>
+          </div>
+          <div class="field"><label>Unit Price ($)</label><input id="msn-uprice" type="number" value="2.50" step="0.10" oninput="calcMasonry()"></div>
+          <div class="field"><label>Units Needed (auto)</label><input id="msn-unitcount" readonly></div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Mortar Price/bag ($)</label><input id="msn-mprice" type="number" value="14" oninput="calcMasonry()"></div>
+          <div class="field"><label>Bags Needed (auto)</label><input id="msn-bagcount" readonly></div>
+          <div class="field"><label>Mortar Cost</label><input id="msn-mortarcost" readonly></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Additional Materials</h3>
+        <div id="msn-misc"></div>
+        <button class="add-row-btn" onclick="addMsnMisc()">+ Add Material</button>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Units</div><div class="mv" id="msn-mm1">$0</div></div>
+        <div class="metric"><div class="ml">Mortar</div><div class="mv" id="msn-mm2">$0</div></div>
+        <div class="metric"><div class="ml">Misc</div><div class="mv" id="msn-mm3">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Materials</div><div class="mv" id="msn-mmtotal">$0</div></div>
+      </div>
+    </div>
+
+    <div id="msn-labor" class="msnsub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Mason Crew</h3>
+        <div class="grid4">
+          <div class="field"><label>Mason Rate ($/hr)</label><input id="msn-mrate" type="number" value="45" oninput="calcMasonry()"></div>
+          <div class="field"><label>Tender Rate ($/hr)</label><input id="msn-trate" type="number" value="28" oninput="calcMasonry()"></div>
+          <div class="field"><label>Mason Count</label><input id="msn-mcount" type="number" value="2" oninput="calcMasonry()"></div>
+          <div class="field"><label>Tender Count</label><input id="msn-tcount" type="number" value="1" oninput="calcMasonry()"></div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Work Days</label><input id="msn-days" type="number" value="3" step="0.5" oninput="calcMasonry()"></div>
+          <div class="field"><label>Hours/Day</label><input id="msn-hrs" type="number" value="8" oninput="calcMasonry()"></div>
+          <div class="field"><label>Burden %</label><input id="msn-burden" type="number" value="30" oninput="calcMasonry()"></div>
+        </div>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Base Labor</div><div class="mv" id="msn-lm1">$0</div></div>
+        <div class="metric"><div class="ml">Burden</div><div class="mv" id="msn-lm2">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Labor</div><div class="mv" id="msn-lmtotal">$0</div></div>
+      </div>
+    </div>
+
+    <div id="msn-media" class="msnsub" style="display:none">
+      <div class="two-col">
+        <div class="card">
+          <h3><div class="bar"></div> Job Site Photos</h3>
+          <div class="upload-zone" ondragover="dragOver(event,'msn-imgzone')" ondragleave="dragLeave('msn-imgzone')" ondrop="dropFiles(event,'msn-imgprev','msn-imgzone')" id="msn-imgzone">
+            <input type="file" accept="image/*" multiple onchange="previewImages(this,'msn-imgprev')">
+            <div class="upload-icon">📷</div>
+            <div class="upload-title">Upload Masonry Site Photos</div>
+            <div class="upload-sub">Drag & drop or click</div>
+          </div>
+          <div class="preview-grid" id="msn-imgprev"></div>
+        </div>
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Audio Notes</h3>
+            <div class="upload-zone" style="margin-bottom:10px">
+              <input type="file" accept="audio/*" onchange="handleAudio(this,'msn-audiobar','msn-audioname')">
+              <div class="upload-icon">🎙</div>
+              <div class="upload-title">Upload Audio Notes</div>
+              <div class="upload-sub">AI will interpret and suggest estimate values</div>
+            </div>
+            <div class="audio-bar" id="msn-audiobar" style="display:none">
+              <span>🎵</span><span class="af" id="msn-audioname">No file</span>
+              <button class="btn btn-sm btn-outline" onclick="analyzeAudio('msn-audioname','msn-airesult','masonry')">Analyze →</button>
+            </div>
+            <button class="rec-btn" style="margin-top:10px" onclick="toggleRecord('msn-recbtn','msn-audiobar','msn-audioname','msn-airesult','masonry')" id="msn-recbtn">
+              <div class="recording-dot"></div> Record Voice Note
+            </button>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> AI Analysis</h3>
+            <button class="btn btn-gold" onclick="analyzeImages('msn-imgprev','msn-airesult','masonry')">🤖 Analyze Photos with AI</button>
+            <div id="msn-airesult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="msn-summary" class="msnsub" style="display:none">
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Overhead & Profit</h3>
+            <div class="grid2">
+              <div class="field"><label>Overhead %</label><input id="msn-oh" type="number" value="15" oninput="calcMasonry()"></div>
+              <div class="field"><label>Profit %</label><input id="msn-profit" type="number" value="12" oninput="calcMasonry()"></div>
+            </div>
+          </div>
+          <div class="card card-gold">
+            <h3><div class="bar"></div> Bid Breakdown</h3>
+            <div class="bid-line"><span class="bl">Materials</span><span class="bv" id="msns-mat">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Labor</span><span class="bv" id="msns-lab">$0.00</span></div>
+            <div class="bid-total"><span class="bt">Total Bid</span><span class="bv" id="msns-total">$0.00</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="metric-row">
+            <div class="metric gold-metric"><div class="ml">Cost / SF</div><div class="mv" id="msns-sf">$0</div></div>
+            <div class="metric gold-metric"><div class="ml">Gross Margin</div><div class="mv" id="msns-margin">0%</div></div>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> Notes</h3>
+            <textarea id="msn-notes" placeholder="Exclusions, warranty, payment terms..."></textarea>
+          </div>
+          <div class="row-actions">
+            <button class="btn btn-gold" onclick="openQuote('masonry')">Preview & Print Quote</button>
+            <button class="btn btn-outline" onclick="exportCSV('masonry')">Export CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ FLOORING ════════ -->
+  <div id="sec-flooring" class="section">
+    <div class="section-title">Flooring Estimator</div>
+    <div class="section-sub">Tile, LVP, hardwood, carpet, epoxy & specialty flooring systems</div>
+
+    <div class="step-tabs">
+      <button class="step-tab active" onclick="flrStep('flr-takeoff',this)">Takeoff</button>
+      <button class="step-tab" onclick="flrStep('flr-materials',this)">Materials</button>
+      <button class="step-tab" onclick="flrStep('flr-labor',this)">Labor</button>
+      <button class="step-tab" onclick="flrStep('flr-media',this)">Photos + AI</button>
+      <button class="step-tab" onclick="flrStep('flr-summary',this)">Bid Summary</button>
+    </div>
+
+    <div id="flr-takeoff" class="flrsub active">
+      <div class="card">
+        <h3><div class="bar"></div> Project Info</h3>
+        <div class="grid3">
+          <div class="field"><label>Project Name</label><input id="flr-proj" type="text" placeholder="e.g. Office LVP Install"></div>
+          <div class="field"><label>Client</label><input id="flr-client" type="text"></div>
+          <div class="field"><label>Flooring Type</label>
+            <select id="flr-type">
+              <option>LVP / LVT</option><option>Ceramic Tile</option><option>Porcelain Tile</option>
+              <option>Hardwood</option><option>Engineered Hardwood</option><option>Carpet</option>
+              <option>Epoxy Coating</option><option>Polished Concrete</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Subfloor Condition</label>
+            <select id="flr-subfloor"><option>Good (no prep)</option><option>Minor Leveling</option><option>Extensive Prep</option><option>Tear-Out Required</option></select>
+          </div>
+          <div class="field"><label>Pattern/Layout</label>
+            <select id="flr-pattern"><option>Straight</option><option>Diagonal (45°)</option><option>Herringbone</option><option>Offset / Brick</option></select>
+          </div>
+          <div class="field"><label>Waste Factor %</label><input id="flr-waste" type="number" value="10" oninput="calcFlooring()"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Room / Area Sections</h3>
+        <div id="flr-sections"></div>
+        <button class="add-row-btn" onclick="addFlrSection()">+ Add Room/Area</button>
+      </div>
+      <div class="metric-row">
+        <div class="metric gold-metric"><div class="ml">Net SF</div><div class="mv" id="flr-mnet">0</div></div>
+        <div class="metric gold-metric"><div class="ml">Order SF (w/ waste)</div><div class="mv" id="flr-mgross">0</div></div>
+        <div class="metric"><div class="ml">Boxes Needed</div><div class="mv" id="flr-mboxes">0</div></div>
+        <div class="metric"><div class="ml">SF/Box</div><div class="mv" id="flr-msfbox">20</div></div>
+      </div>
+    </div>
+
+    <div id="flr-materials" class="flrsub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Flooring Material</h3>
+        <div class="grid4">
+          <div class="field"><label>Material Price ($/SF)</label><input id="flr-matprice" type="number" value="3.50" step="0.10" oninput="calcFlooring()"></div>
+          <div class="field"><label>SF/Box</label><input id="flr-sfbox" type="number" value="20" oninput="calcFlooring()"></div>
+          <div class="field"><label>Total SF to Order</label><input id="flr-totalsf" readonly></div>
+          <div class="field"><label>Material Cost</label><input id="flr-matcost" readonly></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Underlayment & Adhesives</h3>
+        <div class="grid3">
+          <div class="field"><label>Underlayment ($/SF)</label><input id="flr-under" type="number" value="0.35" step="0.05" oninput="calcFlooring()"></div>
+          <div class="field"><label>Adhesive / Thinset ($/SF)</label><input id="flr-adh" type="number" value="0.40" step="0.05" oninput="calcFlooring()"></div>
+          <div class="field"><label>Grout / Trim ($/SF)</label><input id="flr-grout" type="number" value="0.25" step="0.05" oninput="calcFlooring()"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Additional Items</h3>
+        <div id="flr-misc"></div>
+        <button class="add-row-btn" onclick="addFlrMisc()">+ Add Item</button>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Flooring</div><div class="mv" id="flr-mm1">$0</div></div>
+        <div class="metric"><div class="ml">Underlayment/Adh</div><div class="mv" id="flr-mm2">$0</div></div>
+        <div class="metric"><div class="ml">Misc</div><div class="mv" id="flr-mm3">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Materials</div><div class="mv" id="flr-mmtotal">$0</div></div>
+      </div>
+    </div>
+
+    <div id="flr-labor" class="flrsub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Installation Labor</h3>
+        <div class="grid3">
+          <div class="field"><label>Installer Rate ($/SF)</label><input id="flr-instrate" type="number" value="3.00" step="0.25" oninput="calcFlooring()"></div>
+          <div class="field"><label>Total Install SF</label><input id="flr-instsf" readonly></div>
+          <div class="field"><label>Install Labor Cost</label><input id="flr-instcost" readonly></div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Demo/Tear-Out ($)</label><input id="flr-demo" type="number" value="0" oninput="calcFlooring()"></div>
+          <div class="field"><label>Subfloor Prep ($)</label><input id="flr-prep" type="number" value="0" oninput="calcFlooring()"></div>
+          <div class="field"><label>Transition/Trim ($)</label><input id="flr-trim" type="number" value="0" oninput="calcFlooring()"></div>
+        </div>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Install Labor</div><div class="mv" id="flr-lm1">$0</div></div>
+        <div class="metric"><div class="ml">Prep / Demo</div><div class="mv" id="flr-lm2">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Labor</div><div class="mv" id="flr-lmtotal">$0</div></div>
+      </div>
+    </div>
+
+    <div id="flr-media" class="flrsub" style="display:none">
+      <div class="two-col">
+        <div class="card">
+          <h3><div class="bar"></div> Floor Photos</h3>
+          <div class="upload-zone" id="flr-imgzone" ondragover="dragOver(event,'flr-imgzone')" ondragleave="dragLeave('flr-imgzone')" ondrop="dropFiles(event,'flr-imgprev','flr-imgzone')">
+            <input type="file" accept="image/*" multiple onchange="previewImages(this,'flr-imgprev')">
+            <div class="upload-icon">📷</div>
+            <div class="upload-title">Upload Floor Site Photos</div>
+            <div class="upload-sub">Drag & drop or click</div>
+          </div>
+          <div class="preview-grid" id="flr-imgprev"></div>
+        </div>
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Audio Notes</h3>
+            <div class="upload-zone" style="margin-bottom:10px">
+              <input type="file" accept="audio/*" onchange="handleAudio(this,'flr-audiobar','flr-audioname')">
+              <div class="upload-icon">🎙</div>
+              <div class="upload-title">Upload Audio Notes</div>
+              <div class="upload-sub">AI will interpret and fill estimate values</div>
+            </div>
+            <div class="audio-bar" id="flr-audiobar" style="display:none">
+              <span>🎵</span><span class="af" id="flr-audioname">No file</span>
+              <button class="btn btn-sm btn-outline" onclick="analyzeAudio('flr-audioname','flr-airesult','flooring')">Analyze →</button>
+            </div>
+            <button class="rec-btn" style="margin-top:10px" id="flr-recbtn" onclick="toggleRecord('flr-recbtn','flr-audiobar','flr-audioname','flr-airesult','flooring')">
+              <div class="recording-dot"></div> Record Voice Note
+            </button>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> AI Analysis</h3>
+            <button class="btn btn-gold" onclick="analyzeImages('flr-imgprev','flr-airesult','flooring')">🤖 Analyze with AI</button>
+            <div id="flr-airesult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="flr-summary" class="flrsub" style="display:none">
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Overhead & Profit</h3>
+            <div class="grid2">
+              <div class="field"><label>Overhead %</label><input id="flr-oh" type="number" value="15" oninput="calcFlooring()"></div>
+              <div class="field"><label>Profit %</label><input id="flr-profit" type="number" value="12" oninput="calcFlooring()"></div>
+            </div>
+          </div>
+          <div class="card card-gold">
+            <h3><div class="bar"></div> Bid Breakdown</h3>
+            <div class="bid-line"><span class="bl">Materials</span><span class="bv" id="flrs-mat">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Labor</span><span class="bv" id="flrs-lab">$0.00</span></div>
+            <div class="bid-total"><span class="bt">Total Bid</span><span class="bv" id="flrs-total">$0.00</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="metric-row">
+            <div class="metric gold-metric"><div class="ml">Cost / SF</div><div class="mv" id="flrs-sf">$0</div></div>
+            <div class="metric gold-metric"><div class="ml">Gross Margin</div><div class="mv" id="flrs-margin">0%</div></div>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> Notes</h3>
+            <textarea id="flr-notes" placeholder="Exclusions, warranty, payment terms..."></textarea>
+          </div>
+          <div class="row-actions">
+            <button class="btn btn-gold" onclick="openQuote('flooring')">Preview & Print Quote</button>
+            <button class="btn btn-outline" onclick="exportCSV('flooring')">Export CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ POWER WASH ════════ -->
+  <div id="sec-powerwash" class="section">
+    <div class="section-title">Power Washing Estimator</div>
+    <div class="section-sub">Residential & commercial pressure washing, soft washing, fleet cleaning & surface restoration</div>
+
+    <div class="step-tabs">
+      <button class="step-tab active" onclick="pwStep('pw-takeoff',this)">Takeoff</button>
+      <button class="step-tab" onclick="pwStep('pw-materials',this)">Chemicals</button>
+      <button class="step-tab" onclick="pwStep('pw-labor',this)">Labor</button>
+      <button class="step-tab" onclick="pwStep('pw-media',this)">Photos + AI</button>
+      <button class="step-tab" onclick="pwStep('pw-summary',this)">Bid Summary</button>
+    </div>
+
+    <div id="pw-takeoff" class="pwsub active">
+      <div class="card">
+        <h3><div class="bar"></div> Job Details</h3>
+        <div class="grid3">
+          <div class="field"><label>Project Name</label><input id="pw-proj" type="text" placeholder="e.g. Office Complex Exterior"></div>
+          <div class="field"><label>Client</label><input id="pw-client" type="text"></div>
+          <div class="field"><label>Service Type</label>
+            <select id="pw-type">
+              <option>Pressure Wash</option><option>Soft Wash</option><option>Hot Water Wash</option>
+              <option>Fleet / Vehicle Wash</option><option>Roof Wash</option><option>Driveway / Concrete</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Surface Material</label>
+            <select id="pw-surface"><option>Concrete</option><option>Brick / Masonry</option><option>Wood / Deck</option><option>Siding / Stucco</option><option>Roof (Asphalt)</option><option>Metal</option></select>
+          </div>
+          <div class="field"><label>Soil Level</label>
+            <select id="pw-soil" onchange="calcPW()"><option value="1">Light</option><option value="1.3" selected>Moderate</option><option value="1.6">Heavy</option><option value="2">Extreme</option></select>
+          </div>
+          <div class="field"><label>Minimum Charge ($)</label><input id="pw-min" type="number" value="150" oninput="calcPW()"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Surface Areas</h3>
+        <div id="pw-sections"></div>
+        <button class="add-row-btn" onclick="addPWSection()">+ Add Surface Area</button>
+      </div>
+      <div class="metric-row">
+        <div class="metric gold-metric"><div class="ml">Total SF</div><div class="mv" id="pw-msf">0</div></div>
+        <div class="metric"><div class="ml">Est. Hours</div><div class="mv" id="pw-mhrs">0</div></div>
+        <div class="metric"><div class="ml">Water Usage (gal)</div><div class="mv" id="pw-mgal">0</div></div>
+        <div class="metric"><div class="ml">Difficulty Factor</div><div class="mv" id="pw-mfactor">1.3x</div></div>
+      </div>
+    </div>
+
+    <div id="pw-materials" class="pwsub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Chemicals & Supplies</h3>
+        <div class="grid3">
+          <div class="field"><label>Detergent Cost ($)</label><input id="pw-det" type="number" value="0" oninput="calcPW()"></div>
+          <div class="field"><label>Bleach / Chemical ($)</label><input id="pw-chem" type="number" value="0" oninput="calcPW()"></div>
+          <div class="field"><label>Nozzles / Tips ($)</label><input id="pw-tips" type="number" value="0" oninput="calcPW()"></div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Fuel Cost ($)</label><input id="pw-fuel" type="number" value="0" oninput="calcPW()"></div>
+          <div class="field"><label>Water Cost ($)</label><input id="pw-water" type="number" value="0" oninput="calcPW()"></div>
+          <div class="field"><label>Other Supplies ($)</label><input id="pw-supplies" type="number" value="0" oninput="calcPW()"></div>
+        </div>
+      </div>
+      <div class="metric-row">
+        <div class="metric gold-metric"><div class="ml">Total Chemicals/Supplies</div><div class="mv" id="pw-mm1">$0</div></div>
+      </div>
+    </div>
+
+    <div id="pw-labor" class="pwsub" style="display:none">
+      <div class="card">
+        <h3><div class="bar"></div> Crew Labor</h3>
+        <div class="grid4">
+          <div class="field"><label>Operator Rate ($/hr)</label><input id="pw-oprate" type="number" value="32" oninput="calcPW()"></div>
+          <div class="field"><label>Helper Rate ($/hr)</label><input id="pw-hrate" type="number" value="22" oninput="calcPW()"></div>
+          <div class="field"><label>Operators</label><input id="pw-opcount" type="number" value="1" oninput="calcPW()"></div>
+          <div class="field"><label>Helpers</label><input id="pw-hcount" type="number" value="1" oninput="calcPW()"></div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label>Est. Total Hours</label><input id="pw-hrs" type="number" value="4" oninput="calcPW()"></div>
+          <div class="field"><label>Burden %</label><input id="pw-burden" type="number" value="28" oninput="calcPW()"></div>
+          <div class="field"><label>Drive Time ($)</label><input id="pw-drive" type="number" value="0" oninput="calcPW()"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><div class="bar"></div> Equipment</h3>
+        <div class="grid3">
+          <div class="field"><label>Machine Daily Rate ($)</label><input id="pw-machine" type="number" value="0" oninput="calcPW()"></div>
+          <div class="field"><label>Trailer / Transport ($)</label><input id="pw-trailer" type="number" value="0" oninput="calcPW()"></div>
+          <div class="field"><label>Other Equip ($)</label><input id="pw-oequip" type="number" value="0" oninput="calcPW()"></div>
+        </div>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="ml">Base Labor</div><div class="mv" id="pw-lm1">$0</div></div>
+        <div class="metric"><div class="ml">Burden</div><div class="mv" id="pw-lm2">$0</div></div>
+        <div class="metric"><div class="ml">Equipment</div><div class="mv" id="pw-lm3">$0</div></div>
+        <div class="metric gold-metric"><div class="ml">Total Labor + Equip</div><div class="mv" id="pw-lmtotal">$0</div></div>
+      </div>
+    </div>
+
+    <div id="pw-media" class="pwsub" style="display:none">
+      <div class="two-col">
+        <div class="card">
+          <h3><div class="bar"></div> Before Photos</h3>
+          <div class="upload-zone" id="pw-imgzone" ondragover="dragOver(event,'pw-imgzone')" ondragleave="dragLeave('pw-imgzone')" ondrop="dropFiles(event,'pw-imgprev','pw-imgzone')">
+            <input type="file" accept="image/*" multiple onchange="previewImages(this,'pw-imgprev')">
+            <div class="upload-icon">📷</div>
+            <div class="upload-title">Upload Before Photos</div>
+            <div class="upload-sub">AI will assess soil level & condition</div>
+          </div>
+          <div class="preview-grid" id="pw-imgprev"></div>
+        </div>
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Audio Notes</h3>
+            <div class="upload-zone" style="margin-bottom:10px">
+              <input type="file" accept="audio/*" onchange="handleAudio(this,'pw-audiobar','pw-audioname')">
+              <div class="upload-icon">🎙</div>
+              <div class="upload-title">Upload Audio Notes</div>
+              <div class="upload-sub">Describe the job, AI fills the estimate</div>
+            </div>
+            <div class="audio-bar" id="pw-audiobar" style="display:none">
+              <span>🎵</span><span class="af" id="pw-audioname">No file</span>
+              <button class="btn btn-sm btn-outline" onclick="analyzeAudio('pw-audioname','pw-airesult','powerwash')">Analyze →</button>
+            </div>
+            <button class="rec-btn" style="margin-top:10px" id="pw-recbtn" onclick="toggleRecord('pw-recbtn','pw-audiobar','pw-audioname','pw-airesult','powerwash')">
+              <div class="recording-dot"></div> Record Voice Note
+            </button>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> AI Analysis</h3>
+            <button class="btn btn-gold" onclick="analyzeImages('pw-imgprev','pw-airesult','powerwash')">🤖 Analyze with AI</button>
+            <div id="pw-airesult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pw-summary" class="pwsub" style="display:none">
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <h3><div class="bar"></div> Overhead & Profit</h3>
+            <div class="grid2">
+              <div class="field"><label>Overhead %</label><input id="pw-oh" type="number" value="15" oninput="calcPW()"></div>
+              <div class="field"><label>Profit %</label><input id="pw-profit" type="number" value="20" oninput="calcPW()"></div>
+            </div>
+          </div>
+          <div class="card card-gold">
+            <h3><div class="bar"></div> Bid Breakdown</h3>
+            <div class="bid-line"><span class="bl">Chemicals & Supplies</span><span class="bv" id="pws-mat">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Labor & Equipment</span><span class="bv" id="pws-lab">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Overhead</span><span class="bv" id="pws-oh">$0.00</span></div>
+            <div class="bid-line"><span class="bl">Profit</span><span class="bv" id="pws-pft">$0.00</span></div>
+            <div class="bid-total"><span class="bt">Total Bid</span><span class="bv" id="pws-total">$0.00</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="metric-row">
+            <div class="metric gold-metric"><div class="ml">Cost / SF</div><div class="mv" id="pws-sf">$0</div></div>
+            <div class="metric gold-metric"><div class="ml">Gross Margin</div><div class="mv" id="pws-margin">0%</div></div>
+          </div>
+          <div class="card">
+            <h3><div class="bar"></div> Notes</h3>
+            <textarea id="pw-notes" placeholder="What's included, chemicals used, re-visit policy..."></textarea>
+          </div>
+          <div class="row-actions">
+            <button class="btn btn-gold" onclick="openQuote('powerwash')">Preview & Print Quote</button>
+            <button class="btn btn-outline" onclick="exportCSV('powerwash')">Export CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ MARKETING ════════ -->
+  <div id="sec-marketing" class="section">
+    <div class="marketing-hero">
+      <h2>GROW <span>JUST SOLUTIONS</span></h2>
+      <p>Build your brand, generate leads, and dominate your local market with a proven multi-channel marketing strategy built right inside your estimating platform.</p>
+      <div style="position:relative">
+        <span class="status-badge status-green" style="margin-right:8px">● Active Strategy</span>
+        <span class="status-badge status-gold">4 Services</span>
+      </div>
+    </div>
+
+    <div class="channel-grid">
+      <div class="channel-card">
+        <div class="ch-icon">🌐</div>
+        <div class="ch-title">Website & SEO</div>
+        <div class="ch-desc">Rank for "concrete contractor near me" and dominate local search with a fast, professional site and Google Business Profile optimization.</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-icon">📱</div>
+        <div class="ch-title">Social Media</div>
+        <div class="ch-desc">Before/after posts on Instagram & Facebook drive massive organic reach for power washing and flooring jobs. Post every project.</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-icon">⭐</div>
+        <div class="ch-title">Google Reviews</div>
+        <div class="ch-desc">Request reviews at job completion via text. 50+ 5-star reviews build trust and rank you above competitors in local results.</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-icon">📧</div>
+        <div class="ch-title">Email & SMS</div>
+        <div class="ch-desc">Follow up with past clients each spring/fall. Offer seasonal discounts on power washing and concrete sealing to drive repeat revenue.</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-icon">📍</div>
+        <div class="ch-title">Google Local Ads</div>
+        <div class="ch-desc">Google Local Services Ads put Just Solutions at the very top of search results for your service area. Pay per lead, not per click.</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-icon">🤝</div>
+        <div class="ch-title">Referral Program</div>
+        <div class="ch-desc">Give $50 gift cards for every referred job that closes. Turn happy customers into your #1 sales team with a simple referral system.</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-icon">🎥</div>
+        <div class="ch-title">Video / YouTube</div>
+        <div class="ch-desc">Short time-lapse videos of power washing, stamped concrete, or tile installs go viral. One video can generate dozens of leads.</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-icon">🏠</div>
+        <div class="ch-title">Nextdoor & Angi</div>
+        <div class="ch-desc">List on neighborhood platforms where homeowners are actively searching for concrete, masonry, and cleaning services in your area.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="card" style="margin-top:1rem">
+      <h3><div class="bar"></div> Marketing Message Builder (AI-Powered)</h3>
+      <div class="grid3">
+        <div class="field"><label>Service</label>
+          <select id="mkt-service"><option>Concrete</option><option>Masonry</option><option>Flooring</option><option>Power Washing</option></select>
+        </div>
+        <div class="field"><label>Platform</label>
+          <select id="mkt-platform"><option>Facebook Post</option><option>Instagram Caption</option><option>Google Ad</option><option>Email Subject Line</option><option>Text Message</option></select>
+        </div>
+        <div class="field"><label>Goal</label>
+          <select id="mkt-goal"><option>Generate Leads</option><option>Promote Discount</option><option>Build Trust</option><option>Seasonal Campaign</option></select>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:12px">
+        <label>Additional Details (optional)</label>
+        <input id="mkt-details" type="text" placeholder="e.g. 20% off this weekend, before/after photos available...">
+      </div>
+      <button class="btn btn-gold" onclick="generateMarketing()">🤖 Generate Marketing Copy with AI</button>
+      <div id="mkt-result"></div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h3><div class="bar"></div> Pricing Strategy (Market Positioning)</h3>
+      <div class="channel-grid" style="grid-template-columns: repeat(3,1fr)">
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem">
+          <div style="font-size:11px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Budget</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--text3)">PENETRATE</div>
+          <div style="font-size:13px;color:var(--text3);margin-top:8px;line-height:1.6">Price 10–15% below market to win market share. Use on power washing and smaller jobs to build your review base fast.</div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid rgba(212,168,67,0.3);border-radius:var(--radius-lg);padding:1.25rem">
+          <div style="font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Recommended</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold)">MARKET RATE</div>
+          <div style="font-size:13px;color:var(--text3);margin-top:8px;line-height:1.6">Price at market with superior service and professionalism. Your brand, uniforms, and reviews justify fair pricing.</div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem">
+          <div style="font-size:11px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Premium</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--teal)">PREMIUM</div>
+          <div style="font-size:13px;color:var(--text3);margin-top:8px;line-height:1.6">Position as the premium provider with warranties, branded vehicles, uniforms, and professional quotes. 20–30% above market.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ WHITE LABEL / LICENSE ════════ -->
+  <div id="sec-license" class="section">
+    <div class="license-header">
+      <h2>WHITE LABEL LICENSING</h2>
+      <p>Just Solutions is the master hub. License this platform to other contractors and service businesses — they get a branded version, you earn residual income.</p>
+    </div>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-badge">Starter</div>
+        <div class="plan-name">BASIC LICENSE</div>
+        <div class="plan-price">$297<span>/yr</span></div>
+        <div class="plan-desc">Single contractor, white-labeled with their company name and logo. Access to all 4 estimating modules.</div>
+        <ul>
+          <li>All 4 Service Estimators</li>
+          <li>Custom Business Name & Logo</li>
+          <li>Photo Upload (per job)</li>
+          <li>Audio Notes</li>
+          <li>PDF Quote Export</li>
+          <li>Email Support</li>
+        </ul>
+        <div class="plan-btn"><a href="https://buy.stripe.com/00w6oJ2SD5aa6yx50z5c403" target="_blank" class="btn btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Get Basic License</a></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">PRO LICENSE</div>
+        <div class="plan-price">$697<span>/yr</span></div>
+        <div class="plan-desc">Full white-label with AI features, marketing toolkit, and CRM. Perfect for growing contractors.</div>
+        <ul>
+          <li>Everything in Basic</li>
+          <li>AI Photo Analysis</li>
+          <li>AI Audio Interpretation</li>
+          <li>Marketing Copy Generator</li>
+          <li>CRM / Contact Manager</li>
+          <li>Custom Color Theme</li>
+          <li>Priority Support</li>
+          <li>Quarterly Feature Updates</li>
+        </ul>
+        <div class="plan-btn"><a href="https://buy.stripe.com/aFa8wReB17ii8GFfp95c404" target="_blank" class="btn btn-gold" style="width:100%;display:block;text-align:center;text-decoration:none;">Get Pro License</a></div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-badge">Enterprise</div>
+        <div class="plan-name">AGENCY LICENSE</div>
+        <div class="plan-price">$1,997<span>/yr</span></div>
+        <div class="plan-desc">License and resell to up to 25 contractors. Keep 70% of sub-license fees. Full source access.</div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Resell to 25 contractors</li>
+          <li>Your own licensing dashboard</li>
+          <li>Custom domain deployment</li>
+          <li>Source code access</li>
+          <li>Co-branding with Just Solutions</li>
+          <li>Dedicated account manager</li>
+          <li>Revenue share program</li>
+        </ul>
+        <div class="plan-btn"><a href="https://buy.stripe.com/6oUeVf50Lf00bSRgtd5c405" target="_blank" class="btn btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Get Agency License</a></div>
+      </div>
+    </div>
+
+    <div class="license-terms">
+      <h3>LICENSE AGREEMENT — JUST SOLUTIONS PLATFORM</h3>
+      <p><strong>Effective upon purchase. Read carefully before licensing.</strong></p>
+      <ol>
+        <li><strong>Grant of License.</strong> Just Solutions LLC ("Licensor") grants the purchaser ("Licensee") a non-exclusive, non-transferable license to use and white-label the Just Solutions Estimating Platform ("Software") for the term specified at purchase. Licensee may customize branding elements (name, logo, colors) but may not claim original authorship of the Software.</li>
+        <li><strong>Permitted Uses.</strong> Licensee may use the Software for their own business operations. Pro and Agency licensees may sub-license to third parties only under the terms explicitly stated in their license tier. Sub-licensing is prohibited under the Basic tier.</li>
+        <li><strong>Just Solutions Hub Status.</strong> Licensee acknowledges that Just Solutions LLC remains the originating hub and master brand of this platform. All white-labeled versions must include the phrase "Powered by Just Solutions" in the footer, unless the Agency tier with full co-branding rights is purchased.</li>
+        <li><strong>Prohibited Actions.</strong> Licensee may not: reverse-engineer or decompile the Software; remove copyright notices; redistribute the unmodified source as their own product; use the Software for illegal purposes; or transfer the license to a third party without written consent from Just Solutions LLC.</li>
+        <li><strong>Revenue Share (Agency Tier).</strong> Agency licensees who sub-license the platform agree to remit 30% of all sub-license fees collected to Just Solutions LLC on a quarterly basis. Just Solutions LLC reserves the right to audit revenue reports with 30-day written notice.</li>
+        <li><strong>Intellectual Property.</strong> All original code, design, and branding elements remain the sole property of Just Solutions LLC. Customizations made by the Licensee are owned by the Licensee. Just Solutions LLC retains rights to all underlying Software architecture.</li>
+        <li><strong>Limitation of Liability.</strong> The Software is provided "as is." Just Solutions LLC is not liable for any damages arising from use of the Software, including but not limited to business losses, incorrect estimates, or data loss.</li>
+        <li><strong>Termination.</strong> Licenses auto-renew annually. Either party may terminate with 30 days written notice. Upon termination, Licensee must cease using the Software and destroy all copies.</li>
+        <li><strong>Governing Law.</strong> This agreement is governed by the laws of the state in which Just Solutions LLC is registered, without regard to conflict of law provisions.</li>
+        <li><strong>Contact.</strong> For licensing inquiries: <a href="mailto:director@metaearthinitiative.org">director@metaearthinitiative.org</a></li>
+      </ol>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h3><div class="bar"></div> White Label Customization Preview</h3>
+      <div class="grid3">
+        <div class="field"><label>Your Business Name</label><input id="wl-name" type="text" placeholder="e.g. ProBuild Estimating"></div>
+        <div class="field"><label>Primary Color</label><input id="wl-color" type="color" value="#d4a843" style="height:42px;padding:4px"></div>
+        <div class="field"><label>Tagline</label><input id="wl-tagline" type="text" placeholder="e.g. Built for Contractors"></div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-top:12px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem">
+          <div id="wl-preview-icon" style="width:44px;height:44px;background:linear-gradient(135deg,#d4a843,#e8743a);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#000">PB</div>
+          <div>
+            <div id="wl-preview-name" style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--text)">PROBUILD ESTIMATING</div>
+            <div id="wl-preview-tag" style="font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase">Built for Contractors</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--text3)">Powered by Just Solutions ™</div>
+      </div>
+      <div style="margin-top:12px">
+        <button class="btn btn-gold" onclick="updateWLPreview()">Update Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ CONTACT CRM ════════ -->
+  <div id="sec-contact" class="section">
+    <div class="section-title">Client CRM</div>
+    <div class="section-sub">Manage leads, clients, and follow-ups for Just Solutions</div>
+
+    <div class="two-col">
+      <div>
+        <div class="card">
+          <h3><div class="bar"></div> Add New Contact / Lead</h3>
+          <div class="grid2">
+            <div class="field"><label>First Name</label><input id="crm-fname" type="text" placeholder="John"></div>
+            <div class="field"><label>Last Name</label><input id="crm-lname" type="text" placeholder="Smith"></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label>Phone</label><input id="crm-phone" type="tel" placeholder="(555) 000-0000"></div>
+            <div class="field"><label>Email</label><input id="crm-email" type="email" placeholder="john@email.com"></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label>Service Needed</label>
+              <select id="crm-service"><option>Concrete</option><option>Masonry</option><option>Flooring</option><option>Power Washing</option><option>Multiple</option></select>
+            </div>
+            <div class="field"><label>Status</label>
+              <select id="crm-status"><option>New Lead</option><option>Estimate Sent</option><option>Follow Up</option><option>Won</option><option>Lost</option></select>
+            </div>
+          </div>
+          <div class="field" style="margin-bottom:12px">
+            <label>Address / Notes</label>
+            <textarea id="crm-notes" placeholder="Job address, scope notes, referral source..."></textarea>
+          </div>
+          <button class="btn btn-gold" onclick="addCRMContact()">+ Add Contact</button>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="height:calc(100% - 0px)">
+          <h3><div class="bar"></div> Contact List</h3>
+          <div id="crm-list" style="max-height:500px;overflow-y:auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ QUOTE MODAL ════════ -->
+<div class="modal-overlay" id="quote-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeQuote()">✕</button>
+    <div class="quote-header">
+      <div class="quote-company">JUST SOLUTIONS</div>
+      <div class="quote-sub">Professional Services • Concrete | Masonry | Flooring | Power Washing</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px" id="q-date"></div>
+    </div>
+    <div style="margin:1rem 0">
+      <div class="grid2">
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px">PREPARED FOR</div><div id="q-client" style="font-size:15px;font-weight:500;color:var(--text)">—</div></div>
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px">PROJECT</div><div id="q-proj" style="font-size:15px;font-weight:500;color:var(--text)">—</div></div>
+      </div>
+    </div>
+    <table class="quote-table">
+      <thead><tr><th>Description</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody id="q-body"></tbody>
+    </table>
+    <div class="quote-sig">
+      <p><strong>Just Solutions LLC</strong> | Ph: (520) 258-2714 | <a href="mailto:director@metaearthinitiative.org">director@metaearthinitiative.org</a> | Shey &amp; Lamar Myers</p>
+      <p>This quote is valid for 30 days. A 25% deposit is required to schedule. Final balance due upon completion.</p>
+      <p style="margin-top:1rem"><strong>Client Signature:</strong> _________________________ &nbsp;&nbsp; <strong>Date:</strong> _____________</p>
+    </div>
+    <div class="row-actions" style="margin-top:1.5rem">
+      <button class="btn btn-gold" onclick="window.print()">🖨 Print Quote</button>
+      <button class="btn btn-outline" onclick="closeQuote()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="ft-logo">JUST SOLUTIONS</div>
+  <p>Concrete • Masonry • Flooring • Power Washing</p>
+  <p style="color:var(--text3);font-size:12px;margin-top:4px">Professional Estimating & Business Management Platform</p>
+  <div class="ft-copy">
+    &copy; 2025 Just Solutions LLC. All rights reserved. &nbsp;|&nbsp;
+    <a href="#" style="color:var(--gold);text-decoration:none" onclick="switchMain('license')">White Label Licensing</a> &nbsp;|&nbsp;
+    Powered by Just Solutions™
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+const state = {
+  concrete: { sections:[], misc:[], subs:[], equip:[] },
+  masonry:  { sections:[], misc:[] },
+  flooring: { sections:[], misc:[] },
+  powerwash:{ sections:[] },
+  crm: []
+};
+
+// ══════════════════════════════════════════
+//  TAB ROUTING
+// ══════════════════════════════════════════
+function switchMain(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
+  const sec = document.getElementById('sec-'+id);
+  if(sec) sec.classList.add('active');
+  const tab = document.getElementById('mtab-'+id);
+  if(tab) tab.classList.add('active');
+  document.querySelectorAll('.svc-chip').forEach(c=>c.classList.remove('active'));
+  // sync hero chips
+  const chips = document.querySelectorAll('.svc-chip');
+  const map = {concrete:0,masonry:1,flooring:2,powerwash:3};
+  if(map[id]!==undefined) chips[map[id]].classList.add('active');
+}
+
+function cStep(id,btn){
+  document.querySelectorAll('.csub').forEach(s=>{s.style.display='none';});
+  document.querySelector('#sec-concrete .step-tabs').querySelectorAll('.step-tab').forEach(t=>t.classList.remove('active'));
+  const el=document.getElementById(id); if(el){el.style.display='block';}
+  if(btn)btn.classList.add('active');
+}
+function msnStep(id,btn){
+  document.querySelectorAll('.msnsub').forEach(s=>{s.style.display='none';});
+  document.querySelector('#sec-masonry .step-tabs').querySelectorAll('.step-tab').forEach(t=>t.classList.remove('active'));
+  const el=document.getElementById(id); if(el){el.style.display='block';}
+  if(btn)btn.classList.add('active');
+}
+function flrStep(id,btn){
+  document.querySelectorAll('.flrsub').forEach(s=>{s.style.display='none';});
+  document.querySelector('#sec-flooring .step-tabs').querySelectorAll('.step-tab').forEach(t=>t.classList.remove('active'));
+  const el=document.getElementById(id); if(el){el.style.display='block';}
+  if(btn)btn.classList.add('active');
+}
+function pwStep(id,btn){
+  document.querySelectorAll('.pwsub').forEach(s=>{s.style.display='none';});
+  document.querySelector('#sec-powerwash .step-tabs').querySelectorAll('.step-tab').forEach(t=>t.classList.remove('active'));
+  const el=document.getElementById(id); if(el){el.style.display='block';}
+  if(btn)btn.classList.add('active');
+}
+
+// ══════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════
+const $ = id => document.getElementById(id);
+const gv = id => parseFloat($(''+id)?.value)||0;
+const fmt = n => '$'+Math.round(n).toLocaleString();
+const fmtD = n => '$'+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const setT = (id,v) => { const e=$(id); if(e)e.textContent=v; };
+const setV = (id,v) => { const e=$(id); if(e)e.value=v; };
+
+function renderDynRow(container, item, fields, removeFn) {
+  const row = document.createElement('div');
+  row.className = 'dyn-row';
+  let html = '';
+  fields.forEach(f => {
+    if(f.type==='select') {
+      html += `<div class="field${f.sm?' field-sm':''}"><label>${f.label}</label><select onchange="this.closest('.dyn-row').__item.${f.key}=this.value;triggerCalc()">`;
+      f.options.forEach(o => html+=`<option${o===item[f.key]?' selected':''}>${o}</option>`);
+      html += `</select></div>`;
+    } else {
+      html += `<div class="field${f.sm?' field-sm':''}"><label>${f.label}</label><input type="${f.type||'text'}" value="${item[f.key]||''}" placeholder="${f.placeholder||''}" onchange="this.closest('.dyn-row').__item.${f.key}=${f.type==='number'?'+':''}this.value;triggerCalc()"></div>`;
+    }
+  });
+  html += `<button class="remove-btn" onclick="${removeFn}(${item.id})">✕ Remove</button>`;
+  row.innerHTML = html;
+  row.__item = item;
+  container.appendChild(row);
+}
+
+function triggerCalc() { calcConcrete(); calcMasonry(); calcFlooring(); calcPW(); }
+
+// ══════════════════════════════════════════
+//  CONCRETE DYNAMIC ROWS
+// ══════════════════════════════════════════
+function addCSection() {
+  const s = {id:Date.now(),name:'Section '+(state.concrete.sections.length+1),l:0,w:0,thick:4};
+  state.concrete.sections.push(s);
+  renderCSections();
+}
+function removeCSection(id) { state.concrete.sections=state.concrete.sections.filter(s=>s.id!==id); renderCSections(); }
+function renderCSections() {
+  const c=$('c-sections'); c.innerHTML='';
+  state.concrete.sections.forEach(s => {
+    renderDynRow(c,s,[
+      {label:'Section Name',key:'name',placeholder:'e.g. Patio'},
+      {label:'Length (ft)',key:'l',type:'number',sm:true},
+      {label:'Width (ft)',key:'w',type:'number',sm:true},
+      {label:'Thickness (in)',key:'thick',type:'number',sm:true}
+    ],'removeCSection');
+  });
+  calcConcrete();
+}
+function addCMisc() { const m={id:Date.now(),name:'',cost:0}; state.concrete.misc.push(m); renderCMisc(); }
+function removeCMisc(id) { state.concrete.misc=state.concrete.misc.filter(x=>x.id!==id); renderCMisc(); }
+function renderCMisc() {
+  const c=$('c-misc'); c.innerHTML='';
+  state.concrete.misc.forEach(m => {
+    renderDynRow(c,m,[{label:'Description',key:'name',placeholder:'e.g. Form lumber'},{label:'Cost ($)',key:'cost',type:'number',sm:true}],'removeCMisc');
+  });
+  calcConcrete();
+}
+function addCSub() { const m={id:Date.now(),name:'',cost:0}; state.concrete.subs.push(m); renderCSubs(); }
+function removeCSub(id) { state.concrete.subs=state.concrete.subs.filter(x=>x.id!==id); renderCSubs(); }
+function renderCSubs() {
+  const c=$('c-subs'); c.innerHTML='';
+  state.concrete.subs.forEach(m => {
+    renderDynRow(c,m,[{label:'Description',key:'name',placeholder:'e.g. Concrete pump'},{label:'Cost ($)',key:'cost',type:'number',sm:true}],'removeCSub');
+  });
+  calcConcrete();
+}
+function addCEquip() {
+  if(state.concrete.equip.length===0){
+    [{name:'Concrete Pump',cost:800},{name:'Power Trowel',cost:200},{name:'Vibrator',cost:75}].forEach(d=>{
+      state.concrete.equip.push({id:Date.now()+Math.random(),name:d.name,cost:d.cost});
+    });
+  } else { state.concrete.equip.push({id:Date.now(),name:'',cost:0}); }
+  renderCEquip();
+}
+function removeCEquip(id) { state.concrete.equip=state.concrete.equip.filter(x=>x.id!==id); renderCEquip(); }
+function renderCEquip() {
+  const c=$('c-equip'); c.innerHTML='';
+  state.concrete.equip.forEach(m => {
+    renderDynRow(c,m,[{label:'Equipment',key:'name',placeholder:'e.g. Bobcat'},{label:'Cost ($)',key:'cost',type:'number',sm:true}],'removeCEquip');
+  });
+  calcConcrete();
+}
+
+// ══════════════════════════════════════════
+//  CALC: CONCRETE
+// ══════════════════════════════════════════
+function calcConcrete() {
+  const waste = gv('c-waste')/100;
+  let netCY=0, totalArea=0, totalThick=0;
+  state.concrete.sections.forEach(s=>{
+    const v=(+(s.l||0))*(+(s.w||0))*(+(s.thick||4)/12)/27;
+    netCY+=v; totalArea+=(+(s.l||0))*(+(s.w||0)); totalThick+=(+(s.thick||4));
+  });
+  const grossCY=netCY*(1+waste);
+  const avgThick=state.concrete.sections.length?totalThick/state.concrete.sections.length:0;
+  setT('c-mnet',netCY.toFixed(2)); setT('c-mgross',grossCY.toFixed(2));
+  setT('c-marea',Math.round(totalArea).toLocaleString()); setT('c-mthick',avgThick.toFixed(1));
+  setV('c-totalCY',grossCY.toFixed(2));
+  const concCost=grossCY*gv('c-priceCY');
+  setV('c-concSubtotal',Math.round(concCost));
+  const rebarCost=gv('c-rebarQty')*gv('c-rebarPrice');
+  setV('c-rebarCost',Math.round(rebarCost));
+  const miscCost=state.concrete.misc.reduce((a,b)=>a+(+(b.cost||0)),0);
+  const totalMat=concCost+rebarCost+miscCost;
+  setT('c-mm1',fmt(concCost)); setT('c-mm2',fmt(rebarCost)); setT('c-mm3',fmt(miscCost)); setT('c-mmtotal',fmt(totalMat));
+  const hpd=gv('c-hrs'),days=gv('c-days'),bRate=gv('c-burden')/100;
+  const totalHrs=(gv('c-fcount')+gv('c-lcount'))*hpd*days;
+  const baseLabor=gv('c-fcount')*gv('c-fwage')*hpd*days+gv('c-lcount')*gv('c-lwage')*hpd*days;
+  const burden=baseLabor*bRate;
+  const subsCost=state.concrete.subs.reduce((a,b)=>a+(+(b.cost||0)),0);
+  const totalLabor=baseLabor+burden+subsCost;
+  setT('c-lm1',Math.round(totalHrs)); setT('c-lm2',fmt(baseLabor)); setT('c-lm3',fmt(burden));
+  setT('c-lm4',fmt(subsCost)); setT('c-lmtotal',fmt(totalLabor));
+  const equipCost=state.concrete.equip.reduce((a,b)=>a+(+(b.cost||0)),0);
+  const otherCost=gv('c-permits')+gv('c-testing')+gv('c-mob');
+  const totalEquip=equipCost+otherCost;
+  setT('c-em1',fmt(equipCost)); setT('c-em2',fmt(otherCost)); setT('c-emtotal',fmt(totalEquip));
+  const sub=totalMat+totalLabor+totalEquip;
+  const ohC=sub*(gv('c-oh')/100);
+  const pftC=(sub+ohC)*(gv('c-profit')/100);
+  const grand=sub+ohC+pftC;
+  const margin=grand>0?((pftC/grand)*100):0;
+  setT('cs-mat',fmtD(totalMat)); setT('cs-lab',fmtD(totalLabor)); setT('cs-eqp',fmtD(totalEquip));
+  setT('cs-sub',fmtD(sub)); setT('cs-oh',fmtD(ohC)); setT('cs-pft',fmtD(pftC)); setT('cs-total',fmtD(grand));
+  setT('cs-cy',grossCY>0?fmt(grand/grossCY):'$0');
+  setT('cs-sf',totalArea>0?'$'+(grand/totalArea).toFixed(2):'$0');
+  setT('cs-margin',margin.toFixed(1)+'%');
+  setT('cs-yards',grossCY.toFixed(1)+' CY');
+}
+
+// ══════════════════════════════════════════
+//  MASONRY DYNAMIC ROWS
+// ══════════════════════════════════════════
+function addMsnSection() { state.masonry.sections.push({id:Date.now(),name:'Section '+(state.masonry.sections.length+1),l:0,h:0}); renderMsnSections(); }
+function removeMsnSection(id) { state.masonry.sections=state.masonry.sections.filter(s=>s.id!==id); renderMsnSections(); }
+function renderMsnSections() {
+  const c=$('msn-sections'); c.innerHTML='';
+  state.masonry.sections.forEach(s=>{
+    renderDynRow(c,s,[{label:'Section',key:'name'},{label:'Length (ft)',key:'l',type:'number',sm:true},{label:'Height (ft)',key:'h',type:'number',sm:true}],'removeMsnSection');
+  });
+  calcMasonry();
+}
+function addMsnMisc() { state.masonry.misc.push({id:Date.now(),name:'',cost:0}); renderMsnMisc(); }
+function removeMsnMisc(id) { state.masonry.misc=state.masonry.misc.filter(x=>x.id!==id); renderMsnMisc(); }
+function renderMsnMisc() {
+  const c=$('msn-misc'); c.innerHTML='';
+  state.masonry.misc.forEach(m=>{
+    renderDynRow(c,m,[{label:'Description',key:'name'},{label:'Cost ($)',key:'cost',type:'number',sm:true}],'removeMsnMisc');
+  });
+  calcMasonry();
+}
+function calcMasonry() {
+  let totalSF=0;
+  state.masonry.sections.forEach(s=>{ totalSF+=(+(s.l||0))*(+(s.h||0)); });
+  const units=Math.ceil(totalSF*1.125*1.1);
+  const mortar=Math.ceil(totalSF/40);
+  setT('msn-msf',Math.round(totalSF).toLocaleString());
+  setT('msn-munits',units.toLocaleString());
+  setT('msn-mmortar',mortar);
+  setV('msn-unitcount',units);
+  const bagCost=mortar*gv('msn-mprice');
+  const unitCost=units*gv('msn-uprice');
+  setV('msn-bagcount',mortar);
+  setV('msn-mortarcost',Math.round(bagCost));
+  const miscCost=state.masonry.misc.reduce((a,b)=>a+(+(b.cost||0)),0);
+  const totalMat=unitCost+bagCost+miscCost;
+  setT('msn-mm1',fmt(unitCost)); setT('msn-mm2',fmt(bagCost)); setT('msn-mm3',fmt(miscCost)); setT('msn-mmtotal',fmt(totalMat));
+  const hpd=gv('msn-hrs'),days=gv('msn-days'),bRate=gv('msn-burden')/100;
+  const base=gv('msn-mcount')*gv('msn-mrate')*hpd*days+gv('msn-tcount')*gv('msn-trate')*hpd*days;
+  const burden=base*bRate; const totalLabor=base+burden;
+  setT('msn-lm1',fmt(base)); setT('msn-lm2',fmt(burden)); setT('msn-lmtotal',fmt(totalLabor));
+  const sub=totalMat+totalLabor;
+  const ohC=sub*(gv('msn-oh')/100);
+  const pftC=(sub+ohC)*(gv('msn-profit')/100);
+  const grand=sub+ohC+pftC;
+  const margin=grand>0?((pftC/grand)*100):0;
+  setT('msns-mat',fmtD(totalMat)); setT('msns-lab',fmtD(totalLabor)); setT('msns-total',fmtD(grand));
+  setT('msns-sf',totalSF>0?'$'+(grand/totalSF).toFixed(2):'$0');
+  setT('msns-margin',margin.toFixed(1)+'%');
+}
+
+// ══════════════════════════════════════════
+//  FLOORING DYNAMIC ROWS
+// ══════════════════════════════════════════
+function addFlrSection() { state.flooring.sections.push({id:Date.now(),name:'Room '+(state.flooring.sections.length+1),l:0,w:0}); renderFlrSections(); }
+function removeFlrSection(id) { state.flooring.sections=state.flooring.sections.filter(s=>s.id!==id); renderFlrSections(); }
+function renderFlrSections() {
+  const c=$('flr-sections'); c.innerHTML='';
+  state.flooring.sections.forEach(s=>{
+    renderDynRow(c,s,[{label:'Room Name',key:'name'},{label:'Length (ft)',key:'l',type:'number',sm:true},{label:'Width (ft)',key:'w',type:'number',sm:true}],'removeFlrSection');
+  });
+  calcFlooring();
+}
+function addFlrMisc() { state.flooring.misc.push({id:Date.now(),name:'',cost:0}); renderFlrMisc(); }
+function removeFlrMisc(id) { state.flooring.misc=state.flooring.misc.filter(x=>x.id!==id); renderFlrMisc(); }
+function renderFlrMisc() {
+  const c=$('flr-misc'); c.innerHTML='';
+  state.flooring.misc.forEach(m=>{
+    renderDynRow(c,m,[{label:'Description',key:'name'},{label:'Cost ($)',key:'cost',type:'number',sm:true}],'removeFlrMisc');
+  });
+  calcFlooring();
+}
+function calcFlooring() {
+  let netSF=0;
+  state.flooring.sections.forEach(s=>{ netSF+=(+(s.l||0))*(+(s.w||0)); });
+  const waste=gv('flr-waste')/100;
+  const grossSF=netSF*(1+waste);
+  const sfbox=gv('flr-sfbox')||20;
+  const boxes=Math.ceil(grossSF/sfbox);
+  setT('flr-mnet',Math.round(netSF).toLocaleString());
+  setT('flr-mgross',Math.round(grossSF).toLocaleString());
+  setT('flr-mboxes',boxes); setT('flr-msfbox',sfbox);
+  setV('flr-totalsf',Math.round(grossSF));
+  const matCost=grossSF*gv('flr-matprice');
+  setV('flr-matcost',Math.round(matCost));
+  const underCost=netSF*(gv('flr-under')+gv('flr-adh')+gv('flr-grout'));
+  const miscCost=state.flooring.misc.reduce((a,b)=>a+(+(b.cost||0)),0);
+  const totalMat=matCost+underCost+miscCost;
+  setT('flr-mm1',fmt(matCost)); setT('flr-mm2',fmt(underCost)); setT('flr-mm3',fmt(miscCost)); setT('flr-mmtotal',fmt(totalMat));
+  const instCost=netSF*gv('flr-instrate');
+  setV('flr-instsf',Math.round(netSF));
+  setV('flr-instcost',Math.round(instCost));
+  const prepCost=gv('flr-demo')+gv('flr-prep')+gv('flr-trim');
+  const totalLabor=instCost+prepCost;
+  setT('flr-lm1',fmt(instCost)); setT('flr-lm2',fmt(prepCost)); setT('flr-lmtotal',fmt(totalLabor));
+  const sub=totalMat+totalLabor;
+  const ohC=sub*(gv('flr-oh')/100);
+  const pftC=(sub+ohC)*(gv('flr-profit')/100);
+  const grand=sub+ohC+pftC;
+  const margin=grand>0?((pftC/grand)*100):0;
+  setT('flrs-mat',fmtD(totalMat)); setT('flrs-lab',fmtD(totalLabor)); setT('flrs-total',fmtD(grand));
+  setT('flrs-sf',netSF>0?'$'+(grand/netSF).toFixed(2):'$0');
+  setT('flrs-margin',margin.toFixed(1)+'%');
+}
+
+// ══════════════════════════════════════════
+//  POWER WASH DYNAMIC ROWS
+// ══════════════════════════════════════════
+function addPWSection() { state.powerwash.sections.push({id:Date.now(),name:'Area '+(state.powerwash.sections.length+1),l:0,w:0}); renderPWSections(); }
+function removePWSection(id) { state.powerwash.sections=state.powerwash.sections.filter(s=>s.id!==id); renderPWSections(); }
+function renderPWSections() {
+  const c=$('pw-sections'); c.innerHTML='';
+  state.powerwash.sections.forEach(s=>{
+    renderDynRow(c,s,[{label:'Surface Name',key:'name'},{label:'Length (ft)',key:'l',type:'number',sm:true},{label:'Width (ft)',key:'w',type:'number',sm:true}],'removePWSection');
+  });
+  calcPW();
+}
+function calcPW() {
+  let totalSF=0;
+  state.powerwash.sections.forEach(s=>{ totalSF+=(+(s.l||0))*(+(s.w||0)); });
+  const factor=parseFloat($('pw-soil')?.value)||1.3;
+  const hrs=Math.ceil(totalSF/1000*factor);
+  const gal=Math.ceil(totalSF*0.1*factor);
+  setT('pw-msf',Math.round(totalSF).toLocaleString());
+  setT('pw-mhrs',hrs);
+  setT('pw-mgal',gal.toLocaleString());
+  setT('pw-mfactor',factor+'x');
+  const chemCost=gv('pw-det')+gv('pw-chem')+gv('pw-tips')+gv('pw-fuel')+gv('pw-water')+gv('pw-supplies');
+  setT('pw-mm1',fmt(chemCost));
+  const baseHrs=gv('pw-hrs');
+  const baseL=(gv('pw-opcount')*gv('pw-oprate')+gv('pw-hcount')*gv('pw-hrate'))*baseHrs;
+  const burden=baseL*(gv('pw-burden')/100);
+  const equipC=gv('pw-machine')+gv('pw-trailer')+gv('pw-oequip');
+  const driveC=gv('pw-drive');
+  const totalLabor=baseL+burden+equipC+driveC;
+  setT('pw-lm1',fmt(baseL)); setT('pw-lm2',fmt(burden)); setT('pw-lm3',fmt(equipC)); setT('pw-lmtotal',fmt(totalLabor));
+  const sub=chemCost+totalLabor;
+  const ohC=sub*(gv('pw-oh')/100);
+  const pftC=(sub+ohC)*(gv('pw-profit')/100);
+  let grand=Math.max(sub+ohC+pftC,gv('pw-min'));
+  const margin=grand>0?((pftC/grand)*100):0;
+  setT('pws-mat',fmtD(chemCost)); setT('pws-lab',fmtD(totalLabor));
+  setT('pws-oh',fmtD(ohC)); setT('pws-pft',fmtD(pftC)); setT('pws-total',fmtD(grand));
+  setT('pws-sf',totalSF>0?'$'+(grand/totalSF).toFixed(2):'$0');
+  setT('pws-margin',margin.toFixed(1)+'%');
+}
+
+// ══════════════════════════════════════════
+//  QUOTE MODAL
+// ══════════════════════════════════════════
+function openQuote(type) {
+  const modal=$('quote-modal');
+  modal.classList.add('open');
+  $('q-date').textContent='Date: '+new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const typeMap={concrete:{client:'c-client',proj:'c-projname',mat:'cs-mat',lab:'cs-lab',eqp:'cs-eqp',oh:'cs-oh',pft:'cs-pft',total:'cs-total'},masonry:{client:'msn-client',proj:'msn-proj',mat:'msns-mat',lab:'msns-lab',total:'msns-total'},flooring:{client:'flr-client',proj:'flr-proj',mat:'flrs-mat',lab:'flrs-lab',total:'flrs-total'},powerwash:{client:'pw-client',proj:'pw-proj',mat:'pws-mat',lab:'pws-lab',total:'pws-total'}};
+  const t=typeMap[type||'concrete']||typeMap.concrete;
+  $('q-client').textContent=$(''+t.client)?.value||'—';
+  $('q-proj').textContent=$(''+t.proj)?.value||'—';
+  const tbody=$('q-body'); tbody.innerHTML='';
+  const rows=[
+    ['Materials & Supplies',$(''+t.mat)?.textContent||'—'],
+    ['Labor & Installation',$(''+t.lab)?.textContent||'—'],
+  ];
+  if(t.eqp) rows.push(['Equipment & Other Costs',$(''+t.eqp)?.textContent||'—']);
+  if(t.oh) rows.push(['Overhead',$(''+t.oh)?.textContent||'—']);
+  if(t.pft) rows.push(['Profit',$(''+t.pft)?.textContent||'—']);
+  rows.forEach(([d,v])=>{
+    tbody.innerHTML+=`<tr><td>${d}</td><td style="text-align:right">${v}</td></tr>`;
+  });
+  tbody.innerHTML+=`<tr class="quote-total-row"><td><strong>TOTAL BID</strong></td><td style="text-align:right"><strong>${$(''+t.total)?.textContent||'$0.00'}</strong></td></tr>`;
+}
+function closeQuote() { $('quote-modal').classList.remove('open'); }
+
+// ══════════════════════════════════════════
+//  IMAGE UPLOAD + PREVIEW
+// ══════════════════════════════════════════
+function previewImages(input, previewId) {
+  const container=$(previewId);
+  Array.from(input.files).forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const div=document.createElement('div');
+      div.className='preview-thumb';
+      div.innerHTML=`<img src="${e.target.result}" alt="site photo"><button class="del" onclick="this.parentElement.remove()">✕</button>`;
+      container.appendChild(div);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function dragOver(e,zoneId){e.preventDefault();$(zoneId)?.classList.add('drag-over');}
+function dragLeave(zoneId){$(zoneId)?.classList.remove('drag-over');}
+function dropFiles(e,prevId,zoneId){
+  e.preventDefault(); $(zoneId)?.classList.remove('drag-over');
+  const container=$(prevId);
+  Array.from(e.dataTransfer.files).forEach(file=>{
+    if(!file.type.startsWith('image/'))return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      const div=document.createElement('div');
+      div.className='preview-thumb';
+      div.innerHTML=`<img src="${ev.target.result}" alt="site photo"><button class="del" onclick="this.parentElement.remove()">✕</button>`;
+      container.appendChild(div);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ══════════════════════════════════════════
+//  AUDIO UPLOAD
+// ══════════════════════════════════════════
+function handleAudio(input,barId,nameId){
+  const f=input.files[0]; if(!f)return;
+  $(barId).style.display='flex';
+  $(nameId).textContent=f.name;
+}
+
+// ══════════════════════════════════════════
+//  VOICE RECORDING
+// ══════════════════════════════════════════
+let mediaRecorders={}, recordedChunks={}, recordingStreams={};
+async function toggleRecord(btnId,barId,nameId,resultId,type){
+  const btn=$(btnId);
+  if(btn.classList.contains('recording')){
+    mediaRecorders[type]?.stop();
+    recordingStreams[type]?.getTracks().forEach(t=>t.stop());
+    btn.classList.remove('recording');
+    btn.innerHTML='<div class="recording-dot"></div> Record Voice Note';
+    return;
+  }
+  try {
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    recordingStreams[type]=stream;
+    recordedChunks[type]=[];
+    const mr=new MediaRecorder(stream);
+    mediaRecorders[type]=mr;
+    mr.ondataavailable=e=>{if(e.data.size>0)recordedChunks[type].push(e.data);};
+    mr.onstop=()=>{
+      const blob=new Blob(recordedChunks[type],{type:'audio/webm'});
+      $(barId).style.display='flex';
+      $(nameId).textContent='recorded-note.webm ('+Math.round(blob.size/1024)+'KB)';
+      analyzeAudio(nameId,resultId,type);
+    };
+    mr.start();
+    btn.classList.add('recording');
+    btn.innerHTML='<div class="recording-dot"></div> ● Recording... (click to stop)';
+  } catch(err){
+    alert('Microphone access required. Please allow microphone permissions and try again.');
+  }
+}
+
+// ══════════════════════════════════════════
+//  AI ANALYSIS (calls Anthropic API)
+// ══════════════════════════════════════════
+async function analyzeImages(prevId, resultId, type) {
+  const thumbs=$(prevId).querySelectorAll('img');
+  const el=$(resultId);
+  el.innerHTML='<div class="ai-result"><div class="ai-label">🤖 Analyzing...</div><div class="ai-text">Processing your photos with AI...</div></div>';
+  const serviceLabels={concrete:'concrete work (slabs, foundations, driveways)',masonry:'masonry (block walls, brick, stone)',flooring:'flooring installation',powerwash:'power washing / pressure washing'};
+  const images=[];
+  for(const img of thumbs){
+    try{
+      const src=img.src;
+      if(src.startsWith('data:')){
+        const b64=src.split(',')[1];
+        const mt=src.split(';')[0].split(':')[1];
+        images.push({type:'image',source:{type:'base64',media_type:mt,data:b64}});
+      }
+    }catch(e){}
+  }
+  const prompt=images.length>0
+    ? `You are an expert ${serviceLabels[type]} estimator. Analyze these job site photos and provide:
+1. A brief description of the work scope you can see
+2. Surface condition assessment (any damage, prep work needed, difficulty)
+3. Estimated square footage or cubic yards if visible
+4. Any special considerations that would affect the estimate (access, soil level, staining, structural issues, etc.)
+5. Suggested price range per SF or CY based on what you see
+Be concise and practical — this is for a contractor estimating the job.`
+    : `You are an expert ${serviceLabels[type]} estimator. No photos were uploaded. Provide general guidance on what to look for when estimating a ${type} job and suggest typical price ranges.`;
+  const msgs=[{role:'user',content:images.length>0?[...images,{type:'text',text:prompt}]:prompt}];
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:msgs})
+    });
+    const data=await res.json();
+    const txt=data.content?.map(c=>c.text||'').join('')||'No response received.';
+    el.innerHTML=`<div class="ai-result"><div class="ai-label">🤖 AI Site Analysis — ${type.charAt(0).toUpperCase()+type.slice(1)}</div><div class="ai-text">${txt.replace(/\n/g,'<br>')}</div></div>`;
+  }catch(err){
+    el.innerHTML=`<div class="ai-result"><div class="ai-label" style="color:var(--red)">Error</div><div class="ai-text">Could not connect to AI. Check your network and try again.<br><small>${err.message}</small></div></div>`;
+  }
+}
+
+async function analyzeAudio(nameId, resultId, type) {
+  const fname=$(nameId)?.textContent||'';
+  const el=$(resultId);
+  el.innerHTML=`<div class="ai-result"><div class="ai-label">🤖 Interpreting Audio...</div><div class="ai-text">Analyzing your voice notes for "${fname}"...</div></div>`;
+  const serviceLabels={concrete:'concrete',masonry:'masonry',flooring:'flooring',powerwash:'power washing'};
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',max_tokens:800,
+        messages:[{role:'user',content:`You are a ${serviceLabels[type]} estimating assistant. The contractor recorded a voice note named "${fname}" while walking a job site. The file has been uploaded but audio transcription is not yet available in this environment. Please provide a helpful template of what a contractor should describe in a voice walkthrough for a ${serviceLabels[type]} job, including: dimensions to call out, surface conditions to note, special considerations, and how that maps to estimate line items. Keep it practical and concise.`}]
+      })
+    });
+    const data=await res.json();
+    const txt=data.content?.map(c=>c.text||'').join('')||'No response.';
+    el.innerHTML=`<div class="ai-result"><div class="ai-label">🎙 Audio Analysis Guide — ${type}</div><div class="ai-text">${txt.replace(/\n/g,'<br>')}</div></div>`;
+  }catch(err){
+    el.innerHTML=`<div class="ai-result"><div class="ai-label" style="color:var(--red)">Error</div><div class="ai-text">Could not connect to AI. ${err.message}</div></div>`;
+  }
+}
+
+// ══════════════════════════════════════════
+//  MARKETING AI
+// ══════════════════════════════════════════
+async function generateMarketing() {
+  const svc=$('mkt-service')?.value;
+  const platform=$('mkt-platform')?.value;
+  const goal=$('mkt-goal')?.value;
+  const details=$('mkt-details')?.value;
+  const el=$('mkt-result');
+  el.innerHTML='<div class="ai-result"><div class="ai-label">Generating...</div><div class="ai-text">Creating marketing copy with AI...</div></div>';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',max_tokens:600,
+        messages:[{role:'user',content:`Create marketing copy for Just Solutions LLC, a professional contractor company specializing in concrete, masonry, flooring, and power washing. Write a ${platform} post for the ${svc} service division. Goal: ${goal}. ${details?'Additional context: '+details:''} Make it compelling, professional, and authentic-sounding. Include a call to action. Keep it natural for the platform. Just Solutions LLC is based in the US and serves residential and commercial clients. Output only the copy, nothing else.`}]
+      })
+    });
+    const data=await res.json();
+    const txt=data.content?.map(c=>c.text||'').join('')||'No response.';
+    el.innerHTML=`<div class="ai-result"><div class="ai-label">✍️ ${platform} — ${svc} — ${goal}</div><div class="ai-text" style="white-space:pre-wrap;font-size:15px;color:var(--text)">${txt}</div><div style="margin-top:12px"><button class="btn btn-sm btn-outline" onclick="copyText(this,'${encodeURIComponent(txt)}')">Copy</button></div></div>`;
+  }catch(err){
+    el.innerHTML=`<div class="ai-result"><div class="ai-label" style="color:var(--red)">Error</div><div class="ai-text">${err.message}</div></div>`;
+  }
+}
+function copyText(btn,encoded){
+  navigator.clipboard.writeText(decodeURIComponent(encoded)).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);});
+}
+
+// ══════════════════════════════════════════
+//  CRM
+// ══════════════════════════════════════════
+function addCRMContact(){
+  const fn=$('crm-fname')?.value.trim();
+  const ln=$('crm-lname')?.value.trim();
+  if(!fn&&!ln){alert('Please enter a contact name.');return;}
+  const contact={id:Date.now(),name:fn+' '+ln,phone:$('crm-phone')?.value||'',email:$('crm-email')?.value||'',service:$('crm-service')?.value||'',status:$('crm-status')?.value||'New Lead',notes:$('crm-notes')?.value||''};
+  state.crm.push(contact);
+  renderCRM();
+  ['crm-fname','crm-lname','crm-phone','crm-email','crm-notes'].forEach(id=>{const e=$(id);if(e)e.value='';});
+}
+function removeCRMContact(id){state.crm=state.crm.filter(c=>c.id!==id);renderCRM();}
+function renderCRM(){
+  const el=$('crm-list');
+  if(!el)return;
+  if(state.crm.length===0){el.innerHTML='<div style="text-align:center;padding:2rem;color:var(--text3);font-size:13px">No contacts yet. Add your first lead above.</div>';return;}
+  const statusColors={
+    'New Lead':'status-blue','Estimate Sent':'status-gold','Follow Up':'status-gold',
+    'Won':'status-green','Lost':''
+  };
+  el.innerHTML=state.crm.map(c=>`
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+        <div>
+          <div style="font-weight:500;font-size:15px;color:var(--text)">${c.name}</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:2px">${c.service}${c.phone?' • '+c.phone:''}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="status-badge ${statusColors[c.status]||''}">${c.status}</span>
+          <button class="btn btn-sm btn-danger" onclick="removeCRMContact(${c.id})">✕</button>
+        </div>
+      </div>
+      ${c.notes?`<div style="font-size:12px;color:var(--text3);margin-top:4px;border-top:1px solid var(--border);padding-top:6px">${c.notes}</div>`:''}
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+//  WHITE LABEL PREVIEW
+// ══════════════════════════════════════════
+function updateWLPreview(){
+  const name=$('wl-name')?.value||'Your Business';
+  const color=$('wl-color')?.value||'#d4a843';
+  const tag=$('wl-tagline')?.value||'Professional Services';
+  const abbr=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)||'YB';
+  const pi=$('wl-preview-icon');
+  if(pi){pi.style.background=`linear-gradient(135deg,${color},${color}99)`;pi.textContent=abbr;}
+  const pn=$('wl-preview-name'); if(pn)pn.textContent=name.toUpperCase();
+  const pt=$('wl-preview-tag'); if(pt){pt.textContent=tag;pt.style.color=color;}
+}
+
+// ══════════════════════════════════════════
+//  LICENSE FORM
+// ══════════════════════════════════════════
+function openLicenseForm(tier){
+  const subject=encodeURIComponent(`Just Solutions License Inquiry — ${tier} Tier`);
+  const body=encodeURIComponent(`Hello Just Solutions,\n\nI am interested in the ${tier} License for the Just Solutions Estimating Platform.\n\nBusiness Name: \nContact Name: \nPhone: \nEmail: \n\nPlease send me more information.\n\nThank you.`);
+  window.open(`mailto:director@metaearthinitiative.org?subject=${subject}&body=${body}`);
+}
+
+// ══════════════════════════════════════════
+//  EXPORT CSV
+// ══════════════════════════════════════════
+function exportCSV(type){
+  const data=type==='concrete'?[
+    ['Item','Amount'],
+    ['Materials',$('cs-mat')?.textContent||''],
+    ['Labor',$('cs-lab')?.textContent||''],
+    ['Equipment',$('cs-eqp')?.textContent||''],
+    ['Overhead',$('cs-oh')?.textContent||''],
+    ['Profit',$('cs-pft')?.textContent||''],
+    ['Total Bid',$('cs-total')?.textContent||''],
+  ]:[
+    ['Item','Amount'],
+    ['Total Bid','See app for details'],
+  ];
+  const csv=data.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=`just-solutions-${type}-estimate.csv`;
+  a.click();
+}
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  addCSection(); addCSection();
+  addMsnSection(); addMsnSection();
+  addFlrSection(); addFlrSection();
