@@ -480,7 +480,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
     </ul>
     <div class="nav-cta">
       <button class="btn btn-ghost btn-sm" onclick="openQuote()">Preview Quote</button>
-      <button class="btn btn-gold btn-sm" onclick="switchMain('concrete');setTimeout(()=>document.getElementById('app').scrollIntoView({behavior:'smooth'}),50)">Start Estimate ↓</button>
+      <button class="btn btn-gold btn-sm" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Start Estimate ↓</button>
     </div>
   </nav>
 
@@ -489,8 +489,8 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
     <h1 class="hero-title">JUST<br/><span>SOLUTIONS</span></h1>
     <p class="hero-sub">Professional estimating, AI-assisted job analysis, and marketing tools for concrete, masonry, flooring, and power washing services.</p>
     <div class="hero-actions">
-      <button class="btn btn-gold" onclick="switchMain('concrete');setTimeout(()=>document.getElementById('app').scrollIntoView({behavior:'smooth'}),50)">Build Your Estimate →</button>
-      <button class="btn btn-ghost" onclick="switchMain('license');setTimeout(()=>document.getElementById('app').scrollIntoView({behavior:'smooth'}),50)">White Label This App</button>
+      <button class="btn btn-gold" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Build Your Estimate →</button>
+      <button class="btn btn-ghost" onclick="switchMain('license')">White Label This App</button>
     </div>
     <div class="hero-services">
       <div class="svc-chip active" onclick="switchMain('concrete');document.getElementById('app').scrollIntoView({behavior:'smooth'})"><span class="icon">🏗</span> Concrete</div>
@@ -1375,7 +1375,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
           <li>PDF Quote Export</li>
           <li>Email Support</li>
         </ul>
-        <div class="plan-btn"><a href="https://buy.stripe.com/00w6oJ2SD5aa6yx50z5c403" target="_blank" class="btn btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Get Basic License</a></div>
+        <div class="plan-btn"><button class="btn btn-outline" style="width:100%" onclick="openLicenseForm('Basic')">Get Basic License</button></div>
       </div>
       <div class="plan-card featured">
         <div class="plan-badge">Most Popular</div>
@@ -1392,7 +1392,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
           <li>Priority Support</li>
           <li>Quarterly Feature Updates</li>
         </ul>
-        <div class="plan-btn"><a href="https://buy.stripe.com/aFa8wReB17ii8GFfp95c404" target="_blank" class="btn btn-gold" style="width:100%;display:block;text-align:center;text-decoration:none;">Get Pro License</a></div>
+        <div class="plan-btn"><button class="btn btn-gold" style="width:100%" onclick="openLicenseForm('Pro')">Get Pro License</button></div>
       </div>
       <div class="plan-card">
         <div class="plan-badge">Enterprise</div>
@@ -1409,7 +1409,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
           <li>Dedicated account manager</li>
           <li>Revenue share program</li>
         </ul>
-        <div class="plan-btn"><a href="https://buy.stripe.com/6oUeVf50Lf00bSRgtd5c405" target="_blank" class="btn btn-outline" style="width:100%;display:block;text-align:center;text-decoration:none;">Get Agency License</a></div>
+        <div class="plan-btn"><button class="btn btn-outline" style="width:100%" onclick="openLicenseForm('Agency')">Get Agency License</button></div>
       </div>
     </div>
 
@@ -1426,7 +1426,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
         <li><strong>Limitation of Liability.</strong> The Software is provided "as is." Just Solutions LLC is not liable for any damages arising from use of the Software, including but not limited to business losses, incorrect estimates, or data loss.</li>
         <li><strong>Termination.</strong> Licenses auto-renew annually. Either party may terminate with 30 days written notice. Upon termination, Licensee must cease using the Software and destroy all copies.</li>
         <li><strong>Governing Law.</strong> This agreement is governed by the laws of the state in which Just Solutions LLC is registered, without regard to conflict of law provisions.</li>
-        <li><strong>Contact.</strong> For licensing inquiries: <a href="mailto:director@metaearthinitiative.org">director@metaearthinitiative.org</a></li>
+        <li><strong>Contact.</strong> For licensing inquiries: licensing@justsolutionsllc.com</li>
       </ol>
     </div>
 
@@ -1515,7 +1515,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
       <tbody id="q-body"></tbody>
     </table>
     <div class="quote-sig">
-      <p><strong>Just Solutions LLC</strong> | Ph: (520) 258-2714 | <a href="mailto:director@metaearthinitiative.org">director@metaearthinitiative.org</a> | Shey &amp; Lamar Myers</p>
+      <p><strong>Just Solutions LLC</strong> | Ph: (555) 000-0000 | info@justsolutionsllc.com</p>
       <p>This quote is valid for 30 days. A 25% deposit is required to schedule. Final balance due upon completion.</p>
       <p style="margin-top:1rem"><strong>Client Signature:</strong> _________________________ &nbsp;&nbsp; <strong>Date:</strong> _____________</p>
     </div>
@@ -2129,7 +2129,7 @@ function updateWLPreview(){
 function openLicenseForm(tier){
   const subject=encodeURIComponent(`Just Solutions License Inquiry — ${tier} Tier`);
   const body=encodeURIComponent(`Hello Just Solutions,\n\nI am interested in the ${tier} License for the Just Solutions Estimating Platform.\n\nBusiness Name: \nContact Name: \nPhone: \nEmail: \n\nPlease send me more information.\n\nThank you.`);
-  window.open(`mailto:director@metaearthinitiative.org?subject=${subject}&body=${body}`);
+  window.open(`mailto:licensing@justsolutionsllc.com?subject=${subject}&body=${body}`);
 }
 
 // ══════════════════════════════════════════
@@ -2162,3 +2162,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   addCSection(); addCSection();
   addMsnSection(); addMsnSection();
   addFlrSection(); addFlrSection();
+  addPWSection(); addPWSection();
+  addCEquip();
+  renderCRM();
+  calcConcrete(); calcMasonry(); calcFlooring(); calcPW();
+  // live sync white label preview
+  $('wl-name')?.addEventListener('input',updateWLPreview);
+  $('wl-color')?.addEventListener('input',updateWLPreview);
+  $('wl-tagline')?.addEventListener('input',updateWLPreview);
+});
+</script>
+</body>
+</html>
