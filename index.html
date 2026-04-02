@@ -90,6 +90,7 @@ nav ul a:hover { color: var(--gold); }
   padding: 10px 22px; border-radius: var(--radius);
   font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
   cursor: pointer; transition: all .2s; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
 .btn-ghost { background: transparent; border: 1px solid var(--border-hi); color: var(--text2); }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
@@ -198,8 +199,9 @@ label { font-size: 12px; color: var(--text3); font-weight: 500; letter-spacing: 
 input, select, textarea {
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 10px 14px;
-  font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--text);
   transition: border-color .2s; outline: none; width: 100%;
+  -webkit-appearance: none; appearance: none;
 }
 input:focus, select:focus, textarea:focus { border-color: var(--gold); }
 input[readonly] { color: var(--text2); cursor: default; }
@@ -446,15 +448,191 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
 .section-sub { font-size: 14px; color: var(--text3); margin-bottom: 1.5rem; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-@media (max-width: 768px) {
+/* ══════════════════════════════════════
+   TABLET (769px – 1024px)
+   ══════════════════════════════════════ */
+@media (min-width: 769px) and (max-width: 1024px) {
   nav { padding: 1rem 1.5rem; }
+  #app { padding: 1.25rem 1.25rem 5rem; }
+  .grid4 { grid-template-columns: 1fr 1fr; }
+  .main-tab { padding: 10px 12px; font-size: 13px; }
+  .plan-grid { grid-template-columns: repeat(2, 1fr); }
+  .metric-row { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+  .marketing-hero { padding: 2rem 1.5rem; }
+  .two-col { gap: 0.75rem; }
+}
+
+/* ══════════════════════════════════════
+   MOBILE RESPONSIVE — PRIMARY BREAKPOINT
+   ══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ---- NAV ---- */
+  nav {
+    padding: 0.85rem 1rem;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
   nav ul { display: none; }
-  .grid2, .grid3, .grid4, .two-col { grid-template-columns: 1fr; }
+  .nav-cta { gap: 6px; }
+  .nav-cta .btn { padding: 8px 12px; font-size: 13px; }
+  .logo-text .name { font-size: 18px; letter-spacing: 2px; }
+
+  /* ---- HERO ---- */
+  .hero-content { padding: 2rem 1rem 2.5rem; }
+  h1.hero-title {
+    font-size: clamp(3rem, 14vw, 5rem);
+    letter-spacing: 3px;
+  }
+  .hero-sub { font-size: 0.95rem; margin-bottom: 1.75rem; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .btn { padding: 12px 18px; font-size: 14px; }
+  .hero-services { gap: 8px; }
+  .svc-chip { padding: 8px 14px; font-size: 12px; }
+
+  /* ---- APP CONTAINER ---- */
+  #app { padding: 0.75rem 0.75rem 5rem; }
+
+  /* ---- MAIN TABS (scrollable pill row) ---- */
+  .main-tabs {
+    padding: 4px;
+    gap: 3px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .main-tabs::-webkit-scrollbar { display: none; }
+  .main-tab {
+    flex: 0 0 auto;
+    min-width: 0;
+    padding: 9px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .tab-icon { font-size: 14px; }
+
+  /* ---- STEP TABS ---- */
+  .step-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    margin-bottom: 1rem;
+  }
+  .step-tabs::-webkit-scrollbar { display: none; }
+  .step-tab {
+    flex: 0 0 auto;
+    padding: 9px 13px;
+    font-size: 12px;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  /* ---- GRIDS → SINGLE COLUMN ---- */
+  .grid2,
+  .grid3,
+  .grid4,
+  .two-col,
   .upload-grid { grid-template-columns: 1fr; }
-  .hero-content { padding: 3rem 1.5rem; }
-  #app { padding: 1rem 1rem 4rem; }
-  h1.hero-title { letter-spacing: 3px; }
+
+  /* Override any inline grid-template-columns on .channel-grid on mobile */
+  .channel-grid[style] { grid-template-columns: 1fr !important; }
+
+  /* ---- CARDS ---- */
+  .card { padding: 1rem; margin-bottom: 0.75rem; }
+  .card h3 { font-size: 12px; margin-bottom: 1rem; }
+
+  /* ---- DYNAMIC ROWS ---- */
+  .dyn-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+  .dyn-row .field-sm { flex: 0 0 100%; }
+  .remove-btn { width: 100%; text-align: center; }
+
+  /* ---- METRICS ---- */
+  .metric-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 1rem 0;
+  }
+  .metric { padding: 0.75rem 1rem; }
+  .metric .mv { font-size: 18px; }
+
+  /* ---- SECTION TITLES ---- */
+  .section-title { font-size: 1.5rem; letter-spacing: 2px; }
+  .section-sub { font-size: 13px; margin-bottom: 1rem; }
+
+  /* ---- BID SUMMARY ---- */
+  .bid-total .bt { font-size: 16px; }
+  .bid-total .bv { font-size: 20px; }
+
+  /* ---- ROW ACTIONS ---- */
+  .row-actions { gap: 8px; }
+  .row-actions .btn { flex: 1; text-align: center; justify-content: center; }
+
+  /* ---- UPLOAD ZONES ---- */
+  .upload-zone { padding: 1.25rem 1rem; }
+  .upload-icon { font-size: 2rem; }
+  .upload-title { font-size: 14px; }
+  .upload-sub { font-size: 12px; }
+  .preview-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 6px; }
+
+  /* ---- MARKETING ---- */
+  .marketing-hero { padding: 1.75rem 1rem; }
+  .marketing-hero h2 { font-size: 2.25rem; letter-spacing: 2px; }
+  .marketing-hero p { font-size: 0.9rem; }
+  .channel-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .channel-card { padding: 1rem; }
+  .channel-card .ch-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .channel-card .ch-title { font-size: 13px; }
+  .channel-card .ch-desc { font-size: 12px; }
+
+  /* ---- PLAN / LICENSE ---- */
   .plan-grid { grid-template-columns: 1fr; }
+  .license-header { padding: 1.5rem 1rem; }
+  .license-header h2 { font-size: 1.75rem; }
+  .plan-card { padding: 1.5rem; }
+  .plan-card .plan-price { font-size: 2rem; }
+
+  /* ---- MODAL ---- */
+  .modal-overlay { padding: 0.75rem; align-items: flex-end; }
+  .modal {
+    padding: 1.5rem 1rem;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    max-height: 88vh;
+  }
+  .quote-company { font-size: 1.75rem; letter-spacing: 2px; }
+  .quote-table { font-size: 12px; }
+  .quote-table th, .quote-table td { padding: 6px 8px; }
+
+  /* ---- FOOTER ---- */
+  footer { padding: 1.75rem 1rem; }
+  footer .ft-logo { font-size: 1.5rem; }
+
+  /* ---- RECORD BUTTON ---- */
+  .rec-btn { width: 100%; justify-content: center; }
+
+  /* ---- CRM CONTACT LIST ---- */
+  #crm-list [style*="display:flex"] { flex-wrap: wrap; }
+
+  /* ---- AI RESULT ---- */
+  .ai-result { padding: 1rem; }
+  .ai-result .ai-text { font-size: 13px; }
+}
+
+/* ══════════════════════════════════════
+   EXTRA SMALL (≤ 380px)
+   ══════════════════════════════════════ */
+@media (max-width: 380px) {
+  .nav-cta .btn:first-child { display: none; }
+  .metric-row { grid-template-columns: 1fr; }
+  h1.hero-title { font-size: clamp(2.6rem, 16vw, 4rem); }
+  .channel-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { text-align: center; justify-content: center; }
 }
 </style>
 </head>
@@ -1426,7 +1604,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
         <li><strong>Limitation of Liability.</strong> The Software is provided "as is." Just Solutions LLC is not liable for any damages arising from use of the Software, including but not limited to business losses, incorrect estimates, or data loss.</li>
         <li><strong>Termination.</strong> Licenses auto-renew annually. Either party may terminate with 30 days written notice. Upon termination, Licensee must cease using the Software and destroy all copies.</li>
         <li><strong>Governing Law.</strong> This agreement is governed by the laws of the state in which Just Solutions LLC is registered, without regard to conflict of law provisions.</li>
-        <li><strong>Contact.</strong> For licensing inquiries: licensing@justsolutionsllc.com</li>
+        <li><strong>Contact.</strong> For licensing inquiries: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f4989d97919a879d9a93b49e818780879b9881809d9b9a87989897da979b99">[email&#160;protected]</a></li>
       </ol>
     </div>
 
@@ -1515,7 +1693,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
       <tbody id="q-body"></tbody>
     </table>
     <div class="quote-sig">
-      <p><strong>Just Solutions LLC</strong> | Ph: (555) 000-0000 | info@justsolutionsllc.com</p>
+      <p><strong>Just Solutions LLC</strong> | Ph: (555) 000-0000 | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0a9aea6af80aab5b3b4b3afacb5b4a9afaeb3acaca3eea3afad">[email&#160;protected]</a></p>
       <p>This quote is valid for 30 days. A 25% deposit is required to schedule. Final balance due upon completion.</p>
       <p style="margin-top:1rem"><strong>Client Signature:</strong> _________________________ &nbsp;&nbsp; <strong>Date:</strong> _____________</p>
     </div>
@@ -1538,6 +1716,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
   </div>
 </footer>
 
+<script>/* email-decode stub — safe fallback if Cloudflare CDN unavailable */</script>
 <script>
 // ══════════════════════════════════════════
 //  STATE
@@ -2162,14 +2341,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   addCSection(); addCSection();
   addMsnSection(); addMsnSection();
   addFlrSection(); addFlrSection();
-  addPWSection(); addPWSection();
-  addCEquip();
   renderCRM();
-  calcConcrete(); calcMasonry(); calcFlooring(); calcPW();
-  // live sync white label preview
-  $('wl-name')?.addEventListener('input',updateWLPreview);
-  $('wl-color')?.addEventListener('input',updateWLPreview);
-  $('wl-tagline')?.addEventListener('input',updateWLPreview);
 });
 </script>
 </body>
