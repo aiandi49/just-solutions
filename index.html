@@ -496,7 +496,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
   .svc-chip { padding: 8px 14px; font-size: 12px; }
 
   /* ---- APP CONTAINER ---- */
-  #app { padding: 0.75rem 0.75rem 2rem; }
+  #app { padding: 0.75rem 0.75rem 0.75rem; }
 
   /* ---- MAIN TABS (scrollable pill row) ---- */
   .main-tabs {
@@ -534,10 +534,11 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
   .step-tabs::-webkit-scrollbar { display: none; }
   .step-tab {
     flex: 0 0 auto;
-    padding: 8px 14px;
+    min-width: unset;
+    padding: 8px 16px;
     font-size: 12px;
-    min-width: 0;
     white-space: nowrap;
+    text-align: center;
   }
 
   /* ---- GRIDS → SINGLE COLUMN ---- */
