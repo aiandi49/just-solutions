@@ -651,10 +651,10 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
       </div>
     </div>
     <ul>
-      <li><a href="#app">Estimator</a></li>
-      <li><a href="#marketing-tab" onclick="switchMain('marketing')">Marketing</a></li>
-      <li><a href="#license-tab" onclick="switchMain('license')">White Label</a></li>
-      <li><a href="#contact-tab" onclick="switchMain('contact')">Contact</a></li>
+      <li><a href="#app" onclick="switchMain('concrete');document.getElementById('app').scrollIntoView({behavior:'smooth'});return false;">Estimator</a></li>
+      <li><a href="#marketing-tab" onclick="switchMain('marketing');document.getElementById('app').scrollIntoView({behavior:'smooth'});return false;">Marketing</a></li>
+      <li><a href="#license-tab" onclick="switchMain('license');document.getElementById('app').scrollIntoView({behavior:'smooth'});return false;">White Label</a></li>
+      <li><a href="#contact-tab" onclick="switchMain('contact');document.getElementById('app').scrollIntoView({behavior:'smooth'});return false;">Contact</a></li>
     </ul>
     <div class="nav-cta">
       <button class="btn btn-ghost btn-sm" onclick="openQuote()">Preview Quote</button>
@@ -1543,7 +1543,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
       <div class="plan-card">
         <div class="plan-badge">Starter</div>
         <div class="plan-name">BASIC LICENSE</div>
-        <div class="plan-price">$297<span>/yr</span></div>
+        <div class="plan-price">$297<span>/mo</span></div>
         <div class="plan-desc">Single contractor, white-labeled with their company name and logo. Access to all 4 estimating modules.</div>
         <ul>
           <li>All 4 Service Estimators</li>
@@ -1558,7 +1558,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
       <div class="plan-card featured">
         <div class="plan-badge">Most Popular</div>
         <div class="plan-name">PRO LICENSE</div>
-        <div class="plan-price">$697<span>/yr</span></div>
+        <div class="plan-price">$697<span>/mo</span></div>
         <div class="plan-desc">Full white-label with AI features, marketing toolkit, and CRM. Perfect for growing contractors.</div>
         <ul>
           <li>Everything in Basic</li>
@@ -1575,7 +1575,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
       <div class="plan-card">
         <div class="plan-badge">Enterprise</div>
         <div class="plan-name">AGENCY LICENSE</div>
-        <div class="plan-price">$1,997<span>/yr</span></div>
+        <div class="plan-price">$1,997<span>/mo</span></div>
         <div class="plan-desc">License and resell to up to 25 contractors. Keep 70% of sub-license fees. Full source access.</div>
         <ul>
           <li>Everything in Pro</li>
@@ -1604,7 +1604,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
         <li><strong>Limitation of Liability.</strong> The Software is provided "as is." Just Solutions LLC is not liable for any damages arising from use of the Software, including but not limited to business losses, incorrect estimates, or data loss.</li>
         <li><strong>Termination.</strong> Licenses auto-renew annually. Either party may terminate with 30 days written notice. Upon termination, Licensee must cease using the Software and destroy all copies.</li>
         <li><strong>Governing Law.</strong> This agreement is governed by the laws of the state in which Just Solutions LLC is registered, without regard to conflict of law provisions.</li>
-        <li><strong>Contact.</strong> For licensing inquiries: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f4989d97919a879d9a93b49e818780879b9881809d9b9a87989897da979b99">[email&#160;protected]</a></li>
+        <li><strong>Contact.</strong> For licensing inquiries: <a href="mailto:licensing@justsolutionsllc.com" style="color:var(--gold);text-decoration:none;">licensing@justsolutionsllc.com</a></li>
       </ol>
     </div>
 
@@ -1693,7 +1693,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
       <tbody id="q-body"></tbody>
     </table>
     <div class="quote-sig">
-      <p><strong>Just Solutions LLC</strong> | Ph: (555) 000-0000 | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0a9aea6af80aab5b3b4b3afacb5b4a9afaeb3acaca3eea3afad">[email&#160;protected]</a></p>
+      <p><strong>Just Solutions LLC</strong> | Ph: <span style="color:var(--gold);">(520) 258-2714</span> | <a href="mailto:licensing@justsolutionsllc.com" style="color:var(--gold);text-decoration:none;">licensing@justsolutionsllc.com</a></p>
       <p>This quote is valid for 30 days. A 25% deposit is required to schedule. Final balance due upon completion.</p>
       <p style="margin-top:1rem"><strong>Client Signature:</strong> _________________________ &nbsp;&nbsp; <strong>Date:</strong> _____________</p>
     </div>
@@ -1710,7 +1710,7 @@ footer .ft-copy { font-size: 12px; color: var(--text3); margin-top: 1.5rem; padd
   <p>Concrete • Masonry • Flooring • Power Washing</p>
   <p style="color:var(--text3);font-size:12px;margin-top:4px">Professional Estimating & Business Management Platform</p>
   <div class="ft-copy">
-    &copy; 2025 Just Solutions LLC. All rights reserved. &nbsp;|&nbsp;
+    &copy; 2026 Just Solutions LLC. All rights reserved. &nbsp;|&nbsp;
     <a href="#" style="color:var(--gold);text-decoration:none" onclick="switchMain('license')">White Label Licensing</a> &nbsp;|&nbsp;
     Powered by Just Solutions™
   </div>
